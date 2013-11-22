@@ -1,0 +1,20 @@
+<h1>Goals#new</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for(:goal, url: goals_path) do |f| %>
+
+      <%= f.label :Age %>
+      <%= f.text_field :Age %>
+
+      <%= f.label :Weight %>
+      <%= f.text_field :Weight %>
+
+      <%= f.label :Height %>
+      <%= f.text_field :Height %>
+
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %>
+
+  </div>
+</div>
