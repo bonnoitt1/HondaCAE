@@ -7,7 +7,7 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
-           <li><%= link_to "Goals", 'users/goals/new' %> </li>
+           <li><%= link_to "Goals", new_goal_path %> </li>
            <li><%= link_to "Calorie Counter", 'static_pages/calories' %></li>
             <li><%= link_to "Users", '#' %></li>
             <li id="fat-menu" class="dropdown">

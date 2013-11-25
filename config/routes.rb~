@@ -2,10 +2,12 @@ DemoHealth::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :goals
-  resources :calories
   root 'static_pages#home'
+  resources :calories
+  #get "static_pages/calories"
+  #get "goals/new"
   #match '/calories',to:'static_pages#calories', via: 'get'
-  #match '/goals',  to: 'goals#new',           via: 'get'
+  match '/goals/new',  to: 'goals#index',           via: 'get'
   match '/signup', to: 'users#new',           via: 'get'
   match '/signin', to: 'sessions#new',        via: 'get'
   match '/signout',to: 'sessions#destroy',    via: 'delete'
