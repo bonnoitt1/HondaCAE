@@ -3,6 +3,6 @@
 <%= @user.name %>
 </h1>
 <h2>
-This is your Dashboard! Choose what you want do do:
+This is your Dashboard! Choose what you want to do:
 </h2>
 
