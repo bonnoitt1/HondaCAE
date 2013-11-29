@@ -1,0 +1,13 @@
+<h1>Daily Journal</h1>
+<% if signed_in? %>
+<div class="span8">
+	<br>
+	<h3>Enter new Activity:</h3>
+        <%= render 'shared/activity_form' %>
+	<br>
+	<h3>Today's Activities</h3>
+	<%= render 'shared/log' %> <br/>
+	<h3>Activities from other days:</h3>
+	
+   <% end %>
+</div>

@@ -1,0 +1,12 @@
+<div class="span8">
+  <% if @user.activities.any? %>
+    <h3>Activities (<%= @user.activities.count %></h3>
+    <ol class="activities">
+       <%= render @activities %>
+    </ol>
+     <%= will_paginate @activities %>
+       <%= render 'shared/activity_form' %>
+       <h3> Activity Journal </h3>
+       <%= render 'shared/log' %>
+   <% end %>
+</div>

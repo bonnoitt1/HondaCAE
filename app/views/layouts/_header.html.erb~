@@ -1,32 +1,55 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="navbar-inner">
+	
+	
     <div class="container">
-      <%= link_to "demo health", root_path, id: "logo" %>
       <nav>
-        <ul class="nav pull-right">
-          <li><%= link_to "Home", root_path %></li>
-          <li><%= link_to "Help", help_path %></li>
-          <% if signed_in? %>
-           <li><%= link_to "Goals", new_goal_path %> </li>
-           <li><%= link_to "Calorie Counter", 'static_pages/calories' %></li>
-            <li><%= link_to "Users", '#' %></li>
+	  <ul class="nav pull-left">      
+	  <%= link_to image_tag("gethealthy.jpg", :size => "100x40", :alt => 'Get Healthy!'), root_path, id: "logo" %>
+	</ul>
+	 
+	  <% if signed_in? %>
+	  <ul class="nav pull-right">
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Account <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Settings", '#' %></li>
+                <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Sign out", signout_path, method: "delete" %>
                 </li>
               </ul>
             </li>
+	  </ul>
+	  <ul class="nav pull-right">
+		<li><%= link_to "Activities", activities_new_path %></li>
+	  </ul>
+	  <ul class="nav pull-right">
+           	<li><%= link_to "Goals", new_goal_path %> </li>
+	  </ul>
+	  <ul class="nav pull-right">
+           	<li><%= link_to "Calorie Counter", static_pages_calories_path %></li>
+	  </ul>
+	  <ul class="nav pull-right">
+		<li><%= link_to "My Weight", static_pages_graph_path %></li>
+	  </ul>
+	  <ul class="nav pull-right">
+	   <li><%= link_to "Home", current_user %></li>
+	 </ul>
+	  
           <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
-          <% end %>
-        </ul>
+	    <ul class="nav pull-right">
+              <li><%= link_to "Sign in", signin_path %></li>
+	    </ul>          
+	              
+	    <ul class="nav pull-right">
+	      <li><%= link_to "Home", root_path %></li>
+	    </ul>
+	<% end %>
+	
       </nav>
     </div>
   </div>

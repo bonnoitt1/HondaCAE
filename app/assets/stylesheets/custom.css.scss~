@@ -24,6 +24,10 @@ textarea {
   margin-bottom: 10px;
 }
 
+ul, li {
+display: inline;
+}
+
 /* forms */
 
 input, textarea, select, .uneditable-input {
@@ -81,9 +85,10 @@ footer ul li {
   margin-left: 10px;
 }
 
-html, body {
-background: url("app/assets/images/get.jpg") no-repeat scroll 0 0 / 100% 100% transparent !important;
-height: 100%;
-margin: 0;
-padding: 0;
+/* table */
+tr:nth-child(even){
+background-color: #a9a9ab;
+color: #ffffff
 }
+
+

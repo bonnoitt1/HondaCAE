@@ -1,0 +1,12 @@
+<% if @log_items.any? %>
+ <table border="2">
+ <tr>
+   <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Activities</h3></font></th>
+ </tr>
+  <tr class="activities">
+   <%= render partial: 'shared/log_item', collection: @log_items %>
+  </tr>
+ </table>
+  <%= will_paginate @log_items %>
+ 
+<% end %>
