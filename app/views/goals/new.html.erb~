@@ -1,2 +1,13 @@
-<h1>Goals#new</h1>
-<p>Find me in app/views/goals/new.html.erb</p>
+<h1>Goals</h1>
+<% if signed_in? %>
+<div class="span8">
+	<br>
+	<h3>Create new Goal:</h3>
+        <%= render 'shared/goal_form' %>
+	<br>
+	<h3>Past Goals:</h3>
+	<%= render 'shared/log_goal' %> <br/>
+	
+	
+   <% end %>
+</div>

@@ -18,12 +18,25 @@ This is your Dashboard! Choose what you want to do:
      <%= will_paginate @activities %>
    <% end %>
     </table>
-
+<div>
+<div class="span8">
+  <% if @user.goals.any? %>
+    <table border="2">
+    <tr>
+      <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Recent Goals (<%= @user.goals.count %>)</h3></font></th>
+ </tr>
+    <tr class="goals">
+       <%= render @goals %>
+    </tr>
+     <%= will_paginate @goals %>
+   <% end %>
+    </table>
+<div>
 <br/ >
 <ul>
 <li><p><a href="/activities/new"><button>Daily Journal</button></a></p></li>
 <li><p><a href="/goals/new"><button>Goals tracker!</button></a></p></li>
 <li><p><a href="/static_pages/graph"><button>Weight tracker!</button></a></p></li>
 </ul>
-</div>
+
 

@@ -4,9 +4,14 @@ class UsersController < ApplicationController
   def show
      @user = User.find(params[:id])
      @activities = @user.activities.paginate(page: params[:page])
+     @goals = @user.goals.paginate(page: params[:page])
   end
   def new
+    if signed_in?
+	redirect_to current_user
+    else
      @user = User.new
+    end
   end
   def edit
   end
@@ -47,6 +52,6 @@ private
     #end
     def correct_user
       @user = User.find(params[:id])
-      redirect_to(root_url) unless current_user?(@user)
+      redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!") unless current_user?(@user)
     end
 end
