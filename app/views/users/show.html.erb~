@@ -1,5 +1,6 @@
 <h1>
-<%= gravatar_for @user %>
+<%= image_tag(@user.avatar_url.to_s, :size => "200x200") %>
+
 <%= @user.name %>
 </h1>
 <h2>
@@ -24,7 +25,7 @@ This is your Dashboard! Choose what you want to do:
     <table border="2">
     <tr>
       <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Recent Goals (<%= @user.goals.count %>)</h3></font></th>
- </tr>
+    </tr>
     <tr class="goals">
        <%= render @goals %>
     </tr>

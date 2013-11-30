@@ -10,6 +10,12 @@
 
       <%= f.label :email %>
       <%= f.text_field :email %>
+     
+      <%= f.label :avatar %>
+      <%= f.file_field :avatar %>
+
+       <%= f.label :remote_avatar_url, "or enter a URL" %><br />
+       <%= f.text_field :remote_avatar_url %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>
@@ -20,7 +26,5 @@
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
     <% end %>
 
-    <%= gravatar_for @user %>
-    <a href="http://gravatar.com/emails">change</a>
   </div>
 </div>

@@ -1,5 +1,6 @@
 <h1>
-<%= gravatar_for @user %>
+<%= image_tag(@user.avatar_url.to_s, :size => "200x200") %>
+
 <%= @user.name %>
 </h1>
 <h2>
