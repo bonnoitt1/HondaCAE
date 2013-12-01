@@ -1,54 +1,29 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
+<header class="navbar navbar-fixed-top navbar-default">
   <div class="navbar-inner">
 	
 	
     <div class="container">
       <nav>
 	  <ul class="nav pull-left">      
-	  <%= link_to image_tag("gethealthy.jpg", :size => "100x40", :alt => 'Get Healthy!'), root_path, id: "logo" %>
+	  <!--<%= link_to image_tag("gethealthy.jpg", :size => "100x40", :alt => 'Get Healthy!'), root_path, id: "logo" %>-->
+	<a class="navbar-brand" href='/'>Get Healthy!</a>
 	</ul>
 	 
 	  <% if signed_in? %>
-	  <ul class="nav pull-right">
-            <li id="fat-menu" class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Account <b class="caret"></b>
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Profile", current_user %></li>
-                <li><%= link_to "Edit Profile", edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <li>
-                  <%= link_to "Sign out", signout_path, method: "delete" %>
-                </li>
-              </ul>
-            </li>
-	  </ul>
-	  <ul class="nav pull-right">
-		<li><%= link_to "Activities", activities_new_path %></li>
-	  </ul>
-	  <ul class="nav pull-right">
-           	<li><%= link_to "Goals", new_goal_path %> </li>
-	  </ul>
-	  <ul class="nav pull-right">
-           	<li><%= link_to "Calorie Counter", static_pages_calories_path %></li>
-	  </ul>
-	  <ul class="nav pull-right">
-		<li><%= link_to "My Weight", static_pages_graph_path %></li>
-	  </ul>
-	  <ul class="nav pull-right">
-	   <li><%= link_to "Home", current_user %></li>
-	 </ul>
+	<ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">Link</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li><a href="#">Another action</a></li>
+                        <li><a href="#">Something else here</a></li>
+                        <li class="divider"></li>
+                        <li><a href="#">Separated link</a></li>
+                      </ul>
+                    </li>
+                  </ul>
 	  
-          <% else %>
-	    <ul class="nav pull-right">
-              <li><%= link_to "Sign in", signin_path %></li>
-	    </ul>          
-	              
-	    <ul class="nav pull-right">
-	      <li><%= link_to "Home", root_path %></li>
-	    </ul>
-	<% end %>
 	
       </nav>
     </div>
