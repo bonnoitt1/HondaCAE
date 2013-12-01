@@ -1,5 +1,4 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :avatar, :remote_avatar_url
   has_many :activities, dependent: :destroy
   has_many :goals, dependent: :destroy
   before_save { self.email = email.downcase }
@@ -26,7 +25,10 @@ class User < ActiveRecord::Base
   def log_goal
       Goal.where("user_id = ?", id)
   end
-
+ 
+  def log_weight
+      Weight.where("user_id = ?", id)
+  end
   private
 
     def create_remember_token

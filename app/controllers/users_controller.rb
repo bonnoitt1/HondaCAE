@@ -5,6 +5,7 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
      @activities = @user.activities.paginate(page: params[:page])
      @goals = @user.goals.paginate(page: params[:page])
+     @weights = @user.weights.paginate(page: params[:page])
   end
   def new
     if signed_in?

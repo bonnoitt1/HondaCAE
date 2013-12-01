@@ -2,6 +2,7 @@ DemoHealth::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :goals
+  resources :weights
   resources :activities, only: [:create, :destroy]
   root 'static_pages#home'
   resources :calories
@@ -13,6 +14,9 @@ DemoHealth::Application.routes.draw do
   #match '/activities/new', to: 'activities#destroy', via: 'delete'
   match '/goals/new', to: 'goals#new', via: 'get'
   match '/goals/index', to: 'goals#index', via: 'get'
+  match '/weights/new', to: 'weights#new', via: 'get'
+  match '/weights/index', to: 'weights#index', via: 'get'
+  match '/shared/weight_form1', to: 'shared#weight_form1', via: 'get'
   #match '/goals/new', to: 'goals#destroy', via: 'delete'
   match '/static_pages/calories',to:'static_pages#calories', via: 'get'
   match '/static_pages/graph',to:'static_pages#graph', via: 'get'

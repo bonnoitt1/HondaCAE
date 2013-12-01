@@ -1,0 +1,14 @@
+<h1>Weights</h1>
+<% if signed_in? %>
+<div class="span8">
+	<br>
+	<h3>Create new Entry:</h3 >
+        <%= render 'shared/weight_form' %>
+	<br>
+	<h3>Past Weights:</h3>
+	<%= render 'shared/log_weight' %> <br/>
+	
+	
+   <% end %>
+</div>
+

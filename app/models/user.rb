@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :activities, dependent: :destroy
   has_many :goals, dependent: :destroy
+  has_many :weights, dependent: :destroy
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
@@ -25,7 +26,10 @@ class User < ActiveRecord::Base
   def log_goal
       Goal.where("user_id = ?", id)
   end
-
+ 
+  def log_weight
+      Weight.where("user_id = ?", id)
+  end
   private
 
     def create_remember_token
