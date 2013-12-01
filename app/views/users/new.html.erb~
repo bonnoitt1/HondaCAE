@@ -1,7 +1,7 @@
 <h1>Sign Up</h1>
 <div class="row">
   <div class="span6 offset3">
-    <%= form_for(@user), :html => {:multipart => true} do |f| %>
+    <%= form_for @user, :html => {:multipart => true} do |f| %>
      <%= render 'shared/error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name %>
@@ -10,10 +10,8 @@
       <%= f.text_field :email %>
 
       <%= f.label :avatar %>
+	<p>(A default avatar will be picked, if you don't select one.)</p>
       <%= f.file_field :avatar %>
-
-       <%= f.label :remote_avatar_url, "or enter a URL" %><br />
-       <%= f.text_field :remote_avatar_url %>
 
       <%= f.label :password %>
       <%= f.password_field :password %>

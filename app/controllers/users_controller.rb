@@ -29,7 +29,7 @@ class UsersController < ApplicationController
        flash[:success] = "Profile updated"
        redirect_to @user
     else 
-       render 'signin', :notice => "Error updating try again after signing in!"
+       render 'edit', :notice => "Error updating profile try again!"
     end
   end
   def create
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
 private 
     def user_params
-       params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar, :remote_avatar_url)
+       params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
     end
     #def signed_in_user
         #store_location
