@@ -1,9 +1,8 @@
-<h1>Sign in</h1>
-<div style="width: 100%; margin-left: 275px;">
+<div style="width: 100%; align:center; margin: 0 auto">
 <div class="container">
-	<div class="col-lg-6">
+	<div class="col-lg-6"><h1>Sign in</h1>
   		<div class="well">
-		
+			
 		    <%= form_for(:session, url: sessions_path, class: "bs-example form-horizontal") do |f| %>
 			<div class="form-group">
 	      	  		<%= f.label :email, class: "col-lg-2 control-label" %>
@@ -22,10 +21,11 @@
                     		
 					<%= f.submit "Sign in", class: "btn btn-large btn-primary" %>
 					
-					<% end %>
+					
 				</div>
-		<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{root_path}'" %>
-				
+		
+				<%= button_tag "Cancel", :type => 'button', :class => "btn btn-large btn-primary", :onclick => "location.href = '#{root_path}'" %>
+				<% end %>
 			</div>
 					<br>	
 		<p>New user? <%= link_to "Sign up now!", signup_path %></p>
@@ -35,3 +35,4 @@
   </div>
 </div>
 </div>
+
