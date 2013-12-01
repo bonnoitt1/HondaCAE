@@ -23,7 +23,7 @@ class ActivitiesController < ApplicationController
        redirect_to(:back)
     else
        @log_items = []
-       #render 'activities/activities'
+       flash.now[:error] = "Missing fields! Try again."
        render 'new'
     end
   end

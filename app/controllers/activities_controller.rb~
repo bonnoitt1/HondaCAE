@@ -8,11 +8,9 @@ class ActivitiesController < ApplicationController
   end
   def index
     	@user = User.find_by_id(current_user[:id])
-	@all = User.new
-	@all = User.all
 	if @user.id<=5
-		@activity = @all.activities.build 
-      		@log_items = @all.log.paginate(page: params[:page])
+		@activity = @user.activities.build 
+      		@log_items = @user.log.paginate(page: params[:page])
 	else
 		redirect_to current_user, :notice => "You dont have the appropriate permission to view that page!"
 	end

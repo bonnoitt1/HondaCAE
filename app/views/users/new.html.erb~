@@ -1,8 +1,9 @@
 <h1>Sign Up</h1>
+<div class="well">
 <div class="row">
   <div class="span6 offset3">
     <%= form_for @user, :html => {:multipart => true} do |f| %>
-     <%= render 'shared/error_messages', object: f.object %>
+     <%= render 'shared/sessions_error_messages', object: f.object %>
       <%= f.label :name %>
       <%= f.text_field :name %>
 
@@ -22,4 +23,5 @@
       <%= f.submit "Create my account", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
+</div>
 </div>

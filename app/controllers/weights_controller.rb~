@@ -18,7 +18,7 @@ class WeightsController < ApplicationController
 
    
   def create
-     @weight = current_user.weights.build(goal_params)
+     @weight = current_user.weights.build(weight_params)
        if @weight.save
            flash[:success] = "Goal Created"
            redirect_to(:back)

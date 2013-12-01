@@ -24,8 +24,8 @@ class GoalsController < ApplicationController
            redirect_to(:back)
        else 
           @log_items_goals = []
-       #render 'goals/goals'
-       render 'new'
+      	 flash.now[:error] = "Wrong Entry! Try again."
+      	 render 'new'
      end
   end
   def new
