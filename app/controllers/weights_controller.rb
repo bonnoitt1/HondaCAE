@@ -1,6 +1,6 @@
 class WeightsController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update, :index, :destroy]
-  before_action :correct_user, only: [:show, :edit, :update]
+ before_action :signed_in_user, only: [:create, :destroy, :index]
+  before_action :correct_user,   only: :destroy
 
   def show
     @user = User.find(params[:id])
@@ -50,8 +50,9 @@ private
 	#params.fetch(:goal, {})
        params.require(:weight).permit(:weight) if params[:weight]
     end
+    
     def correct_user
-     @user = User.find(params[:id])
-      redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!") unless current_user?(@user)
-    end
+    @weight = current_user.weights.find_by(id: params[:id])
+    redirect_to(:back) if @weight.nil?
+  end
 end

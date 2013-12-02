@@ -1,13 +1,14 @@
 <tr id="<%= log_item_weight.id %>">
-<td>
-  <span class="content"><%= log_item_weight.weight %></span>
-  <span class="timestamp">
-   Posted <%= time_ago_in_words(log_item_weight.created_at) %> ago.
-  </span>
+<td><span class="content"><%= log_item_weight.weight %></span></td>
+  <td><span class="timestamp">
+   <%= time_ago_in_words(log_item_weight.created_at) %> ago.
+  </span></td>
  <% if current_user?(log_item_weight.user) %>
-   <%= link_to "delete", log_item_weight, method: :delete,
+   <td><%= link_to "Delete Weight Entry", log_item_weight, method: :delete,
                                    data: { confirm: "Are you sure?" },
-                                   title: log_item_weight.weight %>
+                                   title: log_item_weight.weight %></td>
  <% end %>
-</td>
+
 </tr>
+
+

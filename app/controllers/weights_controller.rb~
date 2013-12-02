@@ -1,6 +1,6 @@
 class WeightsController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update, :index, :destroy]
-  before_action :correct_user, only: [:show, :edit, :update]
+ before_action :signed_in_user, only: [:create, :destroy, :index]
+  before_action :correct_user,   only: :destroy
 
   def show
     @user = User.find(params[:id])
@@ -25,7 +25,9 @@ class WeightsController < ApplicationController
        else 
           @log_items_weights = []
        #render 'goals/goals'
-       render 'new'
+       	  flash.now[:error] = "Wrong Entry! Try again."
+      	 redirect_to (:back), :notice => "Missing entries... Try again!"	
+	  
      end
   end
   def new
@@ -52,4 +54,8 @@ private
      @user = User.find(params[:id])
       redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!") unless current_user?(@user)
     end
+    def correct_user
+    @weight = current_user.weights.find_by(id: params[:id])
+    redirect_to(:back) if @weight.nil?
+  end
 end

@@ -5,7 +5,7 @@
 	
         <%= render 'shared/weight_form' %>
 	<br>
-	<h3>Past Weights:</h3>
+	
 	<%= render 'shared/log_weight' %> <br/>
 	
    <% end %>

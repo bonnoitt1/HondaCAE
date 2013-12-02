@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update, :index, :destroy]
-  before_action :correct_user, only: [:show, :edit, :update]
+  before_action :signed_in_user, only: [:create, :destroy, :index]
+  before_action :correct_user,   only: :destroy
 
   def show
     @user = User.find(params[:id])

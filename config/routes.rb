@@ -1,8 +1,8 @@
 DemoHealth::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :goals
-  resources :weights
+  resources :goals, only: [:create, :destroy]
+  resources :weights, only: [:create, :destroy]
   resources :activities, only: [:create, :destroy]
   root 'static_pages#home'
   resources :calories
@@ -12,6 +12,7 @@ DemoHealth::Application.routes.draw do
   match '/activities/new', to: 'activities#new', via: 'get'
   match '/activities/index', to: 'activities#index', via: 'get'
   #match '/activities/new', to: 'activities#destroy', via: 'delete'
+ 
   match '/goals/new', to: 'goals#new', via: 'get'
   match '/goals/index', to: 'goals#index', via: 'get'
   match '/weights/new', to: 'weights#new', via: 'get'
@@ -21,12 +22,14 @@ DemoHealth::Application.routes.draw do
   match '/static_pages/calories',to:'static_pages#calories', via: 'get'
   match '/static_pages/graph',to:'static_pages#graph', via: 'get'
   match '/static_pages/temp',to:'static_pages#temp', via: 'get'
-  #match '/goals/new',  to: 'goals#index',           via: 'get'
+
   match '/signup', to: 'users#new',           via: 'get'
   match '/signin', to: 'sessions#new',        via: 'get'
   match '/signout',to: 'sessions#destroy',    via: 'delete'
   match '/help',   to: 'static_pages#help',   via: 'get'
-  match '/about',  to: 'static_pages#about',  via: 'get'
+  match '/about_path',  to: 'static_pages#about',  via: 'get'
+  match '/contact_path',  to: 'static_pages#contact',  via: 'get'
+  match 'users/contact_path',  to: 'static_pages#contact',  via: 'get'
  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

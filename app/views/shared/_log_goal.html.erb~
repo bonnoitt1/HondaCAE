@@ -11,7 +11,7 @@
                     <th><font color="#ffffff">Goal</font></th>
 		    <th><font color="#ffffff">Weight</font></th>
                     <th><font color="#ffffff">Posted at</th></font>
-                    <th><font color="#ffffff">Modify/Delete</th></font>
+                    <th><font color="#ffffff">Delete</th></font>
                   </tr>
                 </thead>
                 <tbody>

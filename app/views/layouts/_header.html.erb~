@@ -11,7 +11,7 @@
 				<ul class="nav navbar-nav navbar-right">
 					<li><%= link_to "Home", current_user %></li>
 					<li><%= link_to "Calorie Counter", static_pages_calories_path %></li>
-					<li><%= link_to "Weight Tracker", new_weight_path %> </li>
+					<li><%= link_to "Weight Tracker", weights_new_path %> </li>
 					<li><%= link_to "Goals", new_goal_path %> </li>
 					<li><%= link_to "Activities", activities_new_path %></li>
                     			<li id="fat-menu" class="dropdown">
@@ -26,14 +26,7 @@
 								<%= link_to "Sign out", signout_path, method: "delete" %>
 							</li>
 						</ul>
-					</li>
-					
-					
-					
-					
-					
-					
-                   
+					</li>            
 				</ul>
 		<% else %>
 				<ul class="nav navbar-nav navbar-right">

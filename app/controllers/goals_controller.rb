@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
-  before_action :signed_in_user, only: [:edit, :update, :index, :destroy]
-  before_action :correct_user, only: [:show, :edit, :update]
+  before_action :signed_in_user, only: [:create, :destroy, :index]
+  before_action :correct_user,   only: :destroy
 
   def show
     @user = User.find(params[:id])
@@ -49,7 +49,7 @@ private
        params.require(:goal).permit(:description, :weight, :height) if params[:goal]
     end
     def correct_user
-     @user = User.find(params[:id])
-      redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!") unless current_user?(@user)
-    end
+    @goal = current_user.goals.find_by(id: params[:id])
+    redirect_to(:back) if @goal.nil?
+  end
 end
