@@ -1,25 +1,40 @@
-<h1>
-<%= image_tag(@user.avatar_url.to_s, :size => "200x200") %>
 
-<%= @user.name %>
-</h1>
-<h2>
-This is your Dashboard! Choose what you want to do:
-</h2>
+<div class="jumbotron">
+		<span style="float: left; margin-right: 15px;">
+                  <%= image_tag(@user.avatar_url.to_s, :size => "200x200") %>
+                </span>
+		<h1><%= @user.name %></h1>
+		<h3><%= @user.email %></h3>
+		<p>This is your Dashboard! Choose what you want to do:</p>
+		<div class="bs-example">
+              	<p><a href="/activities/new"><button type="button" class="btn btn-info"><h5>Daily Journal</h5></button></a>
+<a href="/goals/new"><button type="button" class="btn btn-info"><h5>Goals tracker!</h5></button></a>
+<a href="/weights/new"><button type="button" class="btn btn-info"><h5>Weight tracker!</h5></button></a>
+              </p>
+            </div>
+		
+</div>
+
+
+
+<div class="page-header">
+              <h1 id="tables">Tables</h1>
+</div>
 
 <div class="span8">
   <% if @user.activities.any? %>
     <table border="2">
     <tr>
       <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Recent Activities (<%= @user.activities.count %>)</h3></font></th>
- </tr>
+    </tr>
     <tr class="activities">
        <%= render @activities %>
     </tr>
      <%= will_paginate @activities %>
    <% end %>
     </table>
-<div>
+</div>
+<br>
 <div class="span8">
   <% if @user.goals.any? %>
     <table border="2">
@@ -32,8 +47,8 @@ This is your Dashboard! Choose what you want to do:
      <%= will_paginate @goals %>
    <% end %>
     </table>
-<div>
-<br/ >
+</div>
+<br/>
 <div class="span8">
   <% if @user.weights.any? %>
     <table border="2">
@@ -41,17 +56,11 @@ This is your Dashboard! Choose what you want to do:
       <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Recent Entries (<%= @user.weights.count %>)</h3></font></th>
     </tr>
     <tr class="weights">
-       <%= render @weights%>
+       <%= render @weights %>
     </tr>
      <%= will_paginate @weights %>
    <% end %>
     </table>
 <div>
-<ul>
-<li><p><a href="/activities/new"><button>Daily Journal</button></a></p></li>
-<li><p><a href="/goals/new"><button>Goals tracker!</button></a></p></li>
-<li><p><a href="/static_pages/graph"><button>Graph!</button></a></p></li>
-<li><p><a href="/weights/new"><button>Weight tracker!</button></a></p></li>
-</ul>
 
 
