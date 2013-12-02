@@ -10,7 +10,6 @@
 	<% if signed_in? %>
 				<ul class="nav navbar-nav navbar-right">
 					<li><%= link_to "Home", current_user %></li>
-					<li><%= link_to "Statistics", static_pages_graph_path %></li>
 					<li><%= link_to "Calorie Counter", static_pages_calories_path %></li>
 					<li><%= link_to "Weight Tracker", new_weight_path %> </li>
 					<li><%= link_to "Goals", new_goal_path %> </li>

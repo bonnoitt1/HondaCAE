@@ -2,8 +2,7 @@
 <% if signed_in? %>
 <div class="span8">
 	<br>
-	<h3>Enter new Activity:</h3>
-        <%= render 'shared/activity_form' %>
+	<%= render 'shared/activity_form' %>
 	<br>
 	<h3>Today's Activities</h3>
 	<%= render 'shared/log' %> <br/>

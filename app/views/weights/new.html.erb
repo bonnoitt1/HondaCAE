@@ -37,29 +37,136 @@ var Log = {
     this.elem.style.left = (500 - this.elem.offsetWidth / 2) + 'px';
   }
 };
+
 var x=new Array();
+var z=new Array()
 <% @log_items_weights.each do |w| %>
 x.push(<%=w.weight%>)
+//z.push(<%=w.created_at %>)
 <%end%>
-
-function init(){
+$(function() {
+  initweight();
+});
+$(window).bind('page:change', function() {
+  initweight();
+});
+function initweight(){
   //init data
-y=x.length
-
-
+y=x.length-1
+if (y>3)
+{
+  var json = {
+      'label': ['Weight'],
+      'values': [
+      {
+        'label': 'Entry 1',
+        'values': [x[y-4]]
+      },
+      {
+        'label': 'Entry 2',
+        'values': [x[y-3]]
+      },
+      {
+        'label': 'Entry 3',
+        'values': [x[y-2]]
+      },
+      {
+        'label': 'Entry 4',
+        'values': [x[y-1]]
+      },
+      {
+        'label': 'Entry 5',
+        'values': [x[y]]
+      }]
+      
+  };
+}
+else if(y>2)
+{
   var json = {
       'label': ['Weight', 'Goal'],
       'values': [
       {
-        'label': 'Previous',
+        'label': 'Entry 1',
+        'values': [x[y-3]]
+      },
+      {
+        'label': 'Entry 2',
         'values': [x[y-2]]
       },
       {
-        'label': 'Current',
+        'label': 'Entry 3',
         'values': [x[y-1]]
+      },
+      {
+        'label': 'Entry 4',
+        'values': [x[y]]
       }]
       
   };
+}
+else if(y>1)
+{
+  var json = {
+      'label': ['Weight', 'Goal'],
+      'values': [
+      {
+        'label': 'Entry 1',
+        'values': [x[y-2]]
+      },
+      {
+        'label': 'Entry 2',
+        'values': [x[y-1]]
+      },
+      {
+        'label': 'Entry 3',
+        'values': [x[y]]
+      }]
+      
+  };
+}
+else if(y>0)
+{
+  var json = {
+      'label': ['Weight', 'Goal'],
+      'values': [
+      {
+        'label': 'Entry 1',
+        'values': [x[y-1]]
+      },
+      {
+        'label': 'Entry 2',
+        'values': [x[y]]
+      }]
+      
+  };
+}
+else if (y==0)
+{
+  var json = {
+      'label': ['Weight', 'Goal'],
+      'values': [
+      {
+        'label': 'Entry 1',
+        'values': [x[y]]
+      }]
+      
+  };
+}
+else 
+{
+var json = {
+      'label': ['Weight', 'Goal'],
+      'values': [
+      {
+        'label': '',
+        'values': []
+      }]
+      
+  };
+}
+ 
+
 
   //end
   
@@ -128,7 +235,7 @@ y=x.length
 }
 </script>
 
-<body onload="init();">
+<body onload="initweight();">
 <div id="container">
 
 	<div id="left-container">
