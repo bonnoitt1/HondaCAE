@@ -5,7 +5,7 @@
             </div>
 <div class="bs-example table-responsive">
 		<% if @log_items.any? %>
-              <table class="table table-striped table-bordered table-hover ">
+              <table class="table table-bordered table-hover ">
                 <thead>
                   <tr>
                     <th><font color="#ffffff">Activity</font></th>
