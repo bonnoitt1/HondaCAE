@@ -2,12 +2,14 @@
 <% if signed_in? %>
 <div class="span8">
 	<br>
-	<h3>Create new Goal:</h3>
+	
         <%= render 'shared/goal_form' %>
 	<br>
-	<h3>Past Goals:</h3>
-	<%= render 'shared/log_goal' %> <br/>
 	
+	<%= render 'shared/log_goal' %> <br/>
+	<br>	
+	<h3>Graphical display:</h3>
+	</br>
 	
    <% end %>
 </div>

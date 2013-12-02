@@ -1,9 +1,9 @@
 <tr id="<%= log_item.id %>">
-<td><%= log_item.id %></td>
+
 <td>
   <span class="content"><%= log_item.content %></span></td>
   <td><span class="timestamp">
-   Posted <%= time_ago_in_words(log_item.created_at) %> ago.
+   <%= time_ago_in_words(log_item.created_at) %> ago.
   </span></td>
  <% if current_user?(log_item.user) %>
    <td><%= link_to "Delete Activity", log_item, method: :delete,

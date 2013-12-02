@@ -25,7 +25,9 @@ class WeightsController < ApplicationController
        else 
           @log_items_weights = []
        #render 'goals/goals'
-       render 'new'
+       	  flash.now[:error] = "Wrong Entry! Try again."
+      	 redirect_to (:back), :notice => "Missing entries... Try again!"	
+	  
      end
   end
   def new

@@ -25,7 +25,7 @@ class GoalsController < ApplicationController
        else 
           @log_items_goals = []
       	 flash.now[:error] = "Wrong Entry! Try again."
-      	 render 'new'
+      	 redirect_to (:back), :notice => "Missing entries... Try again!"
      end
   end
   def new
