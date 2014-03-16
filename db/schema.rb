@@ -11,28 +11,61 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131201000057) do
+ActiveRecord::Schema.define(version: 20140315212523) do
 
-  create_table "activities", force: true do |t|
-    t.string   "content"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "activities", ["user_id", "created_at"], name: "index_activities_on_user_id_and_created_at"
-
-  create_table "goals", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "weight"
-    t.integer  "height"
+  create_table "groups", force: true do |t|
+    t.string   "groupname"
     t.string   "description"
-    t.boolean  "achieved"
+    t.string   "owner_email"
+    t.integer  "owner_id"
+    t.boolean  "is_public"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "goals", ["user_id", "created_at"], name: "index_goals_on_user_id_and_created_at"
+  create_table "materials", force: true do |t|
+    t.float    "density"
+    t.float    "elastic_modulus"
+    t.float    "shear_modulus"
+    t.float    "poissons_ratio"
+    t.float    "yield_strength"
+    t.float    "ultimate_tensile_strength"
+    t.float    "ultimate_total_elongation"
+    t.float    "hardness_value"
+    t.float    "melting_point"
+    t.float    "thermal_expansion"
+    t.float    "thermal_conductivity"
+    t.float    "specific_heat"
+    t.float    "electrical_resistivity"
+    t.float    "chemical_composition"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "mat_name"
+    t.string   "mat_type"
+  end
+
+  add_index "materials", ["mat_name", "mat_type"], name: "index_materials_on_mat_name_and_mat_type", unique: true
+
+  create_table "memberships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.boolean  "owner"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "testfiles", force: true do |t|
+    t.string   "filename"
+    t.string   "uploaded_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "material_id"
+    t.string   "mat_name"
+    t.string   "group"
+    t.string   "mat_type"
+  end
+
+  add_index "testfiles", ["material_id", "mat_name", "mat_type", "group"], name: "index_for_testfiles"
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -47,12 +80,4 @@ ActiveRecord::Schema.define(version: 20131201000057) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
-  create_table "weights", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "weight"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-add_index "weights", ["user_id", "created_at"], name: "index_goals_on_user_id_and_created_at"
 end

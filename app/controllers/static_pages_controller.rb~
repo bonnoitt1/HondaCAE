@@ -15,7 +15,10 @@ class StaticPagesController < ApplicationController
 
   def calories
   end
-	
+  
+  def graph
+  end
+
   def temp
 	@users = User.all
   end

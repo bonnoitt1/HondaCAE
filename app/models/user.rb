@@ -2,6 +2,10 @@ class User < ActiveRecord::Base
   has_many :activities, dependent: :destroy
   has_many :goals, dependent: :destroy
   has_many :weights, dependent: :destroy
+  has_many :memberships
+  has_many :groups, through: :memberships
+  attr_accessible :groupname, :description, :owner_id
+
   before_save { self.email = email.downcase }
   before_create :create_remember_token
   validates :name, presence: true, length: { maximum: 50 }
@@ -19,17 +23,14 @@ class User < ActiveRecord::Base
     Digest::SHA1.hexdigest(token.to_s)
   end
 
-  def log
-      Activity.where("user_id = ?", id)
+  def log_membership
+      Membership.where("user_id = ?", id)
+  end
+  
+  def log_group
+      Group.where("owner_id = ?", id)
   end
 
-  def log_goal
-      Goal.where("user_id = ?", id)
-  end
- 
-  def log_weight
-      Weight.where("user_id = ?", id)
-  end
   private
 
     def create_remember_token

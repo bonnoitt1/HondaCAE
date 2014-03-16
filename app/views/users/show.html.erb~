@@ -7,60 +7,52 @@
 		<h3><%= @user.email %></h3>
 		<p>This is your Dashboard! Choose what you want to do:</p>
 		<div class="bs-example">
-              	<p><a href="/activities/new"><button type="button" class="btn btn-info"><h5>Daily Journal</h5></button></a>
-<a href="/goals/new"><button type="button" class="btn btn-info"><h5>Goals tracker!</h5></button></a>
-<a href="/weights/new"><button type="button" class="btn btn-info"><h5>Weight tracker!</h5></button></a>
+        	<p>
+		
+		<% if current_user.id < 5 %>
+		<a href="/materials/new"><button type="button" class="btn btn-info"><h5>Add Materials</h5></button></a>
+		<a href="/materials"><button type="button" class="btn btn-info"><h5>Edit Material</h5></button></a>
+		<a href="/materials"><button type="button" class="btn btn-info"><h5>View/Search Materials</h5></button></a>
+		<% else %>
+		<a href="/materials"><button type="button" class="btn btn-info"><h5>View/Search Materials</h5></button></a>
+		<% end %>
               </p>
             </div>
 		
 </div>
-
-
-
-<div class="page-header">
-              <h1 id="tables">Tables</h1>
-</div>
-
-<div class="span8">
-  <% if @user.activities.any? %>
-    <table border="2">
-    <tr>
-      <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Recent Activities (<%= @user.activities.count %>)</h3></font></th>
-    </tr>
-    <tr class="activities">
-       <%= render @activities %>
-    </tr>
-     <%= will_paginate @activities %>
-   <% end %>
-    </table>
-</div>
 <br>
-<div class="span8">
-  <% if @user.goals.any? %>
-    <table border="2">
-    <tr>
-      <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Recent Goals (<%= @user.goals.count %>)</h3></font></th>
-    </tr>
-    <tr class="goals">
-       <%= render @goals %>
-    </tr>
-     <%= will_paginate @goals %>
-   <% end %>
-    </table>
-</div>
-<br/>
-<div class="span8">
-  <% if @user.weights.any? %>
-    <table border="2">
-    <tr>
-      <th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Recent Entries (<%= @user.weights.count %>)</h3></font></th>
-    </tr>
-    <tr class="weights">
-       <%= render @weights %>
-    </tr>
-     <%= will_paginate @weights %>
-   <% end %>
-    </table>
-<div>
 
+<table>
+<th bgcolor="#2b2b2c"><font color="#ffffff"><h3>Your Group Memberships (<%= @user.memberships.count %>)</h3></font></th>
+</table>
+<table>
+  <thead>
+    
+    
+    <tr>
+      <th>Group ID</th>
+      <th>Group Name</th>
+      <th>Is Owner?</th>
+      <th>Created at</th>
+      <th></th>
+     
+      <th></th>
+    </tr>
+  </thead>
 
+  <tbody>
+    <% @memberships.each do |membership| %>
+	
+	      <tr>
+		<td><%= membership.group_id %></td>
+		<td><%= membership.group.groupname %></td>
+		<td><%= membership.owner %></td>
+		<td><%= membership.created_at %></td>
+		<td><%= link_to 'Show Group', membership.group %></td>
+		
+		<td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	      </tr>
+	
+    <% end %>
+  </tbody>
+</table>

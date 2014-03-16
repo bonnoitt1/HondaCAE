@@ -3,9 +3,13 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :show]
   def show
      @user = User.find(params[:id])
-     @activities = @user.activities.paginate(page: params[:page])
-     @goals = @user.goals.paginate(page: params[:page])
-     @weights = @user.weights.paginate(page: params[:page])
+     #@memberships = @user.memberships.paginate(page: params[:page])
+     @memberships = Membership.find(:all, :conditions => [ "user_id = ?", @user.id])
+     @groups = Group.all
+     #@groups = Group.find(:all, :conditions => [ "group_id = ?", @memberships.group_id])
+     #@testfiles = Testfile.find(:all, :conditions => [ "mat_name = ? AND mat_type = ?", @material.mat_name, @material.mat_type])
+     #@goals = @user.goals.paginate(page: params[:page])
+     #@weights = @user.weights.paginate(page: params[:page])
   end
   def new
     if signed_in?
@@ -46,6 +50,9 @@ class UsersController < ApplicationController
 private 
     def user_params
        params.require(:user).permit(:name, :email, :password, :password_confirmation, :avatar)
+    end
+    def membership_params
+	params.require(:user).permit(:user_id, :group_id, :owner)
     end
     #def signed_in_user
         #store_location

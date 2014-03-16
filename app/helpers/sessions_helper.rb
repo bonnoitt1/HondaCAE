@@ -17,10 +17,16 @@ end
 def current_user
     remember_token = User.encrypt(cookies[:remember_token])
     @current_user ||= User.find_by(remember_token: remember_token)
-  end
+end
 
 def current_user?(user)
     user == current_user
+end
+
+def user_groups
+    remember_token = User.encrypt(cookies[:remember_token])
+    @current_user ||= User.find_by(remember_token: remember_token)
+    @memberships = Membership.find(:all, :conditions => [ "user_id = ?", @current_user.id])
 end
 
 def signed_in_user

@@ -1756,7 +1756,7 @@ th {
 }
 
 .table-bordered {
-  border: 1px solid #0d747c;
+  border: 1px solid black;
 }
 
 .table-bordered > thead > tr > th,
@@ -1765,7 +1765,7 @@ th {
 .table-bordered > thead > tr > td,
 .table-bordered > tbody > tr > td,
 .table-bordered > tfoot > tr > td {
-  border: 1px solid #0d747c;
+  border: 1px solid black;
 }
 
 .table-bordered > thead > tr > th,
@@ -1775,7 +1775,7 @@ th {
 
 .table-striped > tbody > tr:nth-child(odd) > td,
 .table-striped > tbody > tr:nth-child(odd) > th {
-  background-color: #0f7f88;
+  background-color: #f0f0f0;
 }
 
 .table-hover > tbody > tr:hover > td,

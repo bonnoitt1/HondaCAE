@@ -1,5 +1,6 @@
 @import "bootstrap";
 
+
 html {
   overflow-y: scroll;
 }
@@ -80,17 +81,18 @@ footer ul li {
   margin-left: 10px;
 }
 
+
 body {
 padding-top: 80px;
 }
-  h1 {
-  margin-bottom: 30px
-  }
-  .carousel-control .icon-prev, .carousel-control .icon-next {
+h1 {
+margin-bottom: 30px
+}
+.carousel-control .icon-prev, .carousel-control .icon-next {
    font-size: 100px;
    position:absolute;
    top: 200px
-  }
+}
 .carousel-inner .item .carousel-caption {
 position:absolute;
 top: 200px
@@ -112,64 +114,11 @@ text-align: center;
 }
 
 th {
-background-color: #428bca;
-color: #ec8007;
+background-color: Silver;
+color: Black;
 z-index: 10;
 text-shadow: 1px 1px 1px #fff;
-font-size: 24px;
-}
-
-.badge {
-background-color: #428bca;
-color: #fff;
-font-size: 22px;
-}
-
-#map_canvas {
-        width: 400px;
-        height: 400px;
-}
-.socials {
-padding: 10px;
-}
-
-ody {
-padding-top: 80px;
-}
-  h1 {
-  margin-bottom: 30px
-  }
-  .carousel-control .icon-prev, .carousel-control .icon-next {
-   font-size: 100px;
-   position:absolute;
-   top: 200px
-  }
-.carousel-inner .item .carousel-caption {
-position:absolute;
-top: 200px
-}
-.carousel-indicators {
-position: absolute;
-top: 400px;
-}
-.navbar {
-margin-bottom:0;
-}
-.navbar-nav>li>a {
-line-height: 50px;
-font-size: 16px
-}
-
-.container > h1 {
-text-align: center;
-}
-
-th {
-background-color: #428bca;
-color: #ec8007;
-z-index: 10;
-text-shadow: 1px 1px 1px #fff;
-font-size: 24px;
+font-size: 14px;
 }
 
 .badge {
@@ -188,4 +137,8 @@ padding: 10px;
 .centered-text {
     text-align:center
 }   
+.span35 {  
+    height: auto !important;
+    overflow: scroll;	
+}
 

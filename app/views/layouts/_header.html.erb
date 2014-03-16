@@ -4,17 +4,28 @@
       
 	  <ul class="nav pull-left">      
 	  <!--<%= link_to image_tag("gethealthy.jpg", :size => "100x40", :alt => 'Get Healthy!'), root_path, id: "logo" %>-->
-	<a class="navbar-brand" href='/'>Get Healthy!</a>
+	<a class="navbar-brand" href='/'>Honda Material Database</a>
 	</ul>
 	 <div class="container">
 	<% if signed_in? %>
 				<ul class="nav navbar-nav navbar-right">
 					<li><%= link_to "Home", current_user %></li>
-					<li><%= link_to "Calorie Counter", static_pages_calories_path %></li>
-					<li><%= link_to "Weight Tracker", weights_new_path %> </li>
-					<li><%= link_to "Goals", goals_new_path %> </li>
-					<li><%= link_to "Activities", activities_new_path %></li>
-                    			<li id="fat-menu" class="dropdown">
+					<% if current_user.id < 5 %>
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Manage Database <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Add Material", new_material_path %></li>
+							<li><%= link_to "Update Material Properties", materials_path %></li>
+							<li><%= link_to "Delete Material", materials_path %></li>
+						</ul>
+					</li>
+					<% end %>
+
+					<li><%= link_to "Search/View Materials", materials_path %></li>
+									
+					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						Account <b class="caret"></b>
 						</a>
@@ -26,7 +37,8 @@
 								<%= link_to "Sign out", signout_path, method: "delete" %>
 							</li>
 						</ul>
-					</li>            
+					</li>
+            				
 				</ul>
 		<% else %>
 				<ul class="nav navbar-nav navbar-right">
