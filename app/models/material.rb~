@@ -1,0 +1,3 @@
+class Material < ActiveRecord::Base
+	has_many :testfiles, :foreign_key => "index_for_testfiles", dependent: :destroy
+end

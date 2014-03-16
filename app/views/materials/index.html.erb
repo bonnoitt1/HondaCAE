@@ -1,0 +1,102 @@
+<h1>Listing materials</h1>
+<div class="span35">
+<table class="table table-striped table-hover ">
+<tbody> 
+<thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th>Density</th>
+      <th>Elastic modulus</th>
+      <th>Shear modulus</th>
+      <th>Poissons ratio</th>
+      <th>Yield strength</th>
+      <th>Ultimate tensile strength</th>
+      <th>Ultimate total elongation</th>
+      <th>Hardness value</th>
+      <th>Melting point</th>
+      <th>Thermal expansion</th>
+      <th>Thermal conductivity</th>
+      <th>Specific heat</th>
+      <th>Electrical resistivity</th>
+      <th>Chemical composition</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+   
+    <% @materials.each do |material| %>
+      <tr>
+        <td><%= material.mat_name %></td>
+        <td><%= material.mat_type %></td>
+        <td><%= material.density %></td>
+	<td><%= material.elastic_modulus %></td>
+        <td><%= material.shear_modulus %></td>
+        <td><%= material.poissons_ratio %></td>
+        <td><%= material.yield_strength %></td>
+        <td><%= material.ultimate_tensile_strength %></td>
+        <td><%= material.ultimate_total_elongation %></td>
+        <td><%= material.hardness_value %></td>
+        <td><%= material.melting_point %></td>
+        <td><%= material.thermal_expansion %></td>
+        <td><%= material.thermal_conductivity %></td>
+        <td><%= material.specific_heat %></td>
+        <td><%= material.electrical_resistivity %></td>
+        <td><%= material.chemical_composition %></td>
+	<td><%= link_to 'Show', material %></td>
+	<% if current_user.id < 5 %>        
+        <td><%= link_to 'Edit', edit_material_path(material) %></td>
+        <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+<br>
+<% if current_user.id < 5 %> 
+<p align="center"><%= link_to 'New Material', new_material_path %></p>
+<% end %>
+<h1>Listing testfiles</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Material</th>
+      <th>Type</th>
+      <th>Group</th>
+      <th>Filename</th>
+      <th>View in Browser</th>
+      
+      <th>Uploaded by</th>
+      <th>Created at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @testfiles.each do |testfile| %>
+      <tr>
+        <td><%= testfile.mat_name %></td>
+	<td><%= testfile.mat_type %></td>
+        <td><%= testfile.group %></td>
+        <td><%= testfile.filename %></td>
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td>
+	
+        <td><%= testfile.uploaded_by %></td>
+	<td><%= testfile.created_at %></td>
+        <td><%= link_to 'Show', testfile %></td>
+        <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
+        <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Testfile', new_testfile_path %>
