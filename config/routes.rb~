@@ -1,5 +1,9 @@
 DemoHealth::Application.routes.draw do
-  match '/testfiles/download', :controller => 'testfiles', :action => 'download'
+  resources :memberships
+
+  resources :groups
+
+  match '/testfiles/download', :controller => 'testfiles', :action => 'download', via: 'get'
   match '/signup', to: 'users#new',           via: 'get'
   match '/signin', to: 'sessions#new',        via: 'get'
   match '/signout',to: 'sessions#destroy',    via: 'delete'

@@ -1,4 +1,4 @@
-DemoHealth::Application.routes.draw do
+CapstoneHonda::Application.routes.draw do
   resources :memberships
 
   resources :groups

@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-DemoHealth::Application.load_tasks
+CapstoneHonda::Application.load_tasks
