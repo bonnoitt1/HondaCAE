@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  has_many :activities, dependent: :destroy
-  has_many :goals, dependent: :destroy
-  has_many :weights, dependent: :destroy
   has_many :memberships
   has_many :groups, through: :memberships
   attr_accessible :groupname, :description, :owner_id

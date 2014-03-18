@@ -10,7 +10,7 @@ CapstoneHonda::Application.routes.draw do
   match '/help',   to: 'static_pages#help',   via: 'get'
   match '/about_path',  to: 'static_pages#about',  via: 'get'
   match '/contact',  to: 'static_pages#contact',  via: 'get'
-  match '/users',  to: 'static_pages#contact',  via: 'get'
+  match '/users',  to: 'users#index',  via: 'get'
 
   resources :testfiles
 

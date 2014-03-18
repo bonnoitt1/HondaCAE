@@ -34,6 +34,7 @@
       <th>Group Name</th>
       <th>Is Owner?</th>
       <th>Created at</th>
+      <th>Updated at</th>
       <th></th>
      
       <th></th>
@@ -48,11 +49,46 @@
 		<td><%= membership.group.groupname %></td>
 		<td><%= membership.owner %></td>
 		<td><%= membership.created_at %></td>
+		<td><%= membership.updated_at %></td>
 		<td><%= link_to 'Show Group', membership.group %></td>
 		
 		<td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	      </tr>
 	
+    <% end %>
+  </tbody>
+</table>
+
+<h1>Listing all groups (<%= @all_groups.count %>)</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Groupname</th>
+      <th>Description</th>
+      <th>Owner email</th>
+      <th>Owner</th>
+      <th>Is public</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @all_groups.each do |group| %>
+      <tr>
+        <td><%= group.groupname %></td>
+        <td><%= group.description %></td>
+        <td><%= group.owner_email %></td>
+        <td><%= group.owner_id %></td>
+        <td><%= group.is_public %></td>
+        <td><%= link_to 'Show', group %></td>
+        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<td></td>
+	<td>Join Group</td>
+      </tr>
     <% end %>
   </tbody>
 </table>

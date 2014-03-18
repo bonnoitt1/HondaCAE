@@ -5,7 +5,7 @@ class UsersController < ApplicationController
      @user = User.find(params[:id])
      #@memberships = @user.memberships.paginate(page: params[:page])
      @memberships = Membership.find(:all, :conditions => [ "user_id = ?", @user.id])
-     @groups = Group.all
+     #@groups = Group.all
      #@groups = Group.find(:all, :conditions => [ "group_id = ?", @memberships.group_id])
      #@testfiles = Testfile.find(:all, :conditions => [ "mat_name = ? AND mat_type = ?", @material.mat_name, @material.mat_type])
      #@goals = @user.goals.paginate(page: params[:page])
