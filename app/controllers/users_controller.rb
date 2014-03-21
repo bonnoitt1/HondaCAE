@@ -12,6 +12,7 @@ class UsersController < ApplicationController
      #@goals = @user.goals.paginate(page: params[:page])
      #@weights = @user.weights.paginate(page: params[:page])
   end
+
   def new
     if signed_in?
 	redirect_to current_user
@@ -19,8 +20,26 @@ class UsersController < ApplicationController
      @user = User.new
     end
   end
+
+  def join_group
+	@user = User.find(params[:id])
+	@group = Group.find(params[:groupid])
+	@membership = Membership.new(:user_id=>@user.id, :group_id=>@group.id, :owner=>false)
+	respond_to do |format|
+	      	if @membership.save
+			format.html { redirect_to @user, notice: 'Your request was successfully sent.' }
+			format.json { render action: 'show', status: :created, location: @membership }
+	      	else
+			format.html { redirect_to @user, notice: 'Sorry there was an error.' }
+			format.json { render json: @membership.errors, status: :unprocessable_entity }
+	      	end
+    	end	
+  end
+
+
   def edit
   end
+
   def index
 	@user = User.find_by_id(current_user[:id])
 	if @user.id<=5

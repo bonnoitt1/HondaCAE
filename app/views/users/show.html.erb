@@ -72,7 +72,6 @@
       <th>Groupname</th>
       <th>Description</th>
       <th>Owner email</th>
-      <th>Owner</th>
       <th>Is public</th>
       <% if current_user.id < 5 %>
 	      <th></th>
@@ -89,7 +88,6 @@
         <td><%= group.groupname %></td>
         <td><%= group.description %></td>
         <td><%= group.owner_email %></td>
-        <td><%= group.owner_id %></td>
         <td><%= group.is_public %></td>
 	<% if current_user.id < 5 %>
 		<td><%= link_to 'Show', group %></td>
@@ -97,7 +95,8 @@
 		<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	<% end %>
 	<% if current_user.id != group.owner_id && current_user.id != 1 %>
-		<td>Join Group</td>
+		<td><%= link_to 'Join Group', :action => 'join_group', :id => current_user.id, :groupid => group.id %></td>
+		    
 	<% end %>
       </tr>
     <% end %>

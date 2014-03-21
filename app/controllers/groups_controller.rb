@@ -20,12 +20,12 @@ class GroupsController < ApplicationController
   # GET /groups/1/edit
   def edit
   end
+  
 
   # POST /groups
   # POST /groups.json
   def create
     @group = Group.new(group_params)
-
     respond_to do |format|
       if @group.save
         format.html { redirect_to @group, notice: 'Group was successfully created.' }
@@ -34,7 +34,9 @@ class GroupsController < ApplicationController
         format.html { render action: 'new' }
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
-    end
+    end	
+    @membership = Membership.new(:user_id=>current_user.id, :group_id=>@group.id, :owner=>true)
+    @membership.save
   end
 
   # PATCH/PUT /groups/1

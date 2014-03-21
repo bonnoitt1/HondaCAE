@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140315212523) do
+ActiveRecord::Schema.define(version: 20140321172650) do
 
   create_table "groups", force: true do |t|
     t.string   "groupname"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20140315212523) do
     t.boolean  "owner"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "is_confirmed"
   end
 
   create_table "testfiles", force: true do |t|

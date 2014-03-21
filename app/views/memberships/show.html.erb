@@ -15,5 +15,9 @@
   <%= @membership.owner %>
 </p>
 
+<p>
+  <strong>Is Membership Confirmed:</strong>
+  <%= @membership.is_confirmed %>
+</p>
 <%= link_to 'Edit', edit_membership_path(@membership) %> |
 <%= link_to 'Back', memberships_path %>
