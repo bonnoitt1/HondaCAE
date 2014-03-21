@@ -3,14 +3,12 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :show]
   def show
      @user = User.find(params[:id])
-     #@memberships = @user.memberships.paginate(page: params[:page])
-     @memberships = Membership.find(:all, :conditions => [ "user_id = ?", @user.id])
      @all_groups = Group.all
-     #@groups = Group.all
-     #@groups = Group.find(:all, :conditions => [ "group_id = ?", @memberships.group_id])
-     #@testfiles = Testfile.find(:all, :conditions => [ "mat_name = ? AND mat_type = ?", @material.mat_name, @material.mat_type])
-     #@goals = @user.goals.paginate(page: params[:page])
-     #@weights = @user.weights.paginate(page: params[:page])
+     #@user_memberships = Membership.find(:all, :conditions => [ "user_id = ? AND is_confirmed = ?", current_user.id, 'true'])
+     @user_memberships = Membership.where(:user_id => @user.id, :is_confirmed => true)
+     @admin_pending_memberships = Membership.where(:is_confirmed => false])
+     @user_pending_memberships = Membership.where(:user_id => @user.id, :is_confirmed => false)
+     @groupadmin_pending_memberships = Membership.where(:group_id => @user.id, :is_confirmed => false)
   end
 
   def new
@@ -24,7 +22,7 @@ class UsersController < ApplicationController
   def join_group
 	@user = User.find(params[:id])
 	@group = Group.find(params[:groupid])
-	@membership = Membership.new(:user_id=>@user.id, :group_id=>@group.id, :owner=>false)
+	@membership = Membership.new(:user_id=>@user.id, :group_id=>@group.id, :owner=>false, :is_confirmed=>false)
 	respond_to do |format|
 	      	if @membership.save
 			format.html { redirect_to @user, notice: 'Your request was successfully sent.' }

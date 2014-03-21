@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   has_many :memberships
   has_many :groups, through: :memberships
   attr_accessible :groupname, :description, :owner_id
-  attr_accessible :name, :email, :remember_token, :avatar
+  attr_accessible :name, :email, :remember_token, :avatar, :password, :password_confirmation
 
   before_save { self.email = email.downcase }
   before_create :create_remember_token

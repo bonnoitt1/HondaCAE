@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
         format.json { render json: @group.errors, status: :unprocessable_entity }
       end
     end	
-    @membership = Membership.new(:user_id=>current_user.id, :group_id=>@group.id, :owner=>true)
+    @membership = Membership.new(:user_id=>current_user.id, :group_id=>@group.id, :owner=>true, :is_confirmed=>true)
     @membership.save
   end
 

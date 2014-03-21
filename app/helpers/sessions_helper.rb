@@ -23,6 +23,15 @@ def current_user?(user)
     user == current_user
 end
 
+def is_admin?
+    current_user.id == 1
+end
+
+def is_group_admin?
+	@admin_of = Membership.where(:user_id => current_user.id, :owner => true)
+	@admin_of.count > 0
+end
+
 def user_groups
     remember_token = User.encrypt(cookies[:remember_token])
     @current_user ||= User.find_by(remember_token: remember_token)
