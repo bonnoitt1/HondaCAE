@@ -28,7 +28,7 @@ def is_admin?
 end
 
 def is_group_admin?
-	@admin_of = Membership.where(:user_id => current_user.id, :owner => true)
+	@admin_of = Group.where(:owner_id => current_user.id)
 	@admin_of.count > 0
 end
 

@@ -9,13 +9,13 @@
 		<div class="bs-example">
         	<p>
 		
-		<% if current_user.id < 5 %>
+		<!--<% if is_admin? %>
 		<a href="/materials/new"><button type="button" class="btn btn-info"><h5>Add Materials</h5></button></a>
 		<a href="/materials"><button type="button" class="btn btn-info"><h5>Edit Material</h5></button></a>
 		<a href="/materials"><button type="button" class="btn btn-info"><h5>View/Search Materials</h5></button></a>
 		<% else %>
 		<a href="/materials"><button type="button" class="btn btn-info"><h5>View/Search Materials</h5></button></a>
-		<% end %>
+		<% end %>--!>
               </p>
             </div>
 		
@@ -30,11 +30,11 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>Group ID</th>
+      <th>User Name</th>
+      <th>User Email</th>
       <th>Group Name</th>
-      <th>Owner Email</th>
-      <th>Is Owner?</th>
-      <th>Created at</th>
+      <th>Group Id</th>
+      <th>Requested at</th>
       <th></th>
       <th></th>
     </tr>
@@ -46,8 +46,12 @@
 	      <tr>
 		<td><%= membership.user.name %></td>
 		<td><%= membership.user.email %></td>
-		
-	
+		<td><%= membership.group.groupname %></td>
+		<td><%= membership.group.id %></td>
+		<td><%= membership.created_at %></td>
+		<td><%= link_to 'Accept', :action => 'accept_membership', :id => current_user.id, :memid => membership.id %></td>
+		<td><%= link_to 'Reject', membership, method: :delete, data: { confirm: 'Are you sure you want to reject this membership request?' } %></td>
+		</tr>
     <% end %>
   </tbody>
 </table>
@@ -60,11 +64,11 @@
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
-      <th>Group ID</th>
+      <th>User Name</th>
+      <th>User Email</th>
       <th>Group Name</th>
-      <th>Owner Email</th>
-      <th>Is Owner?</th>
-      <th>Created at</th>
+      <th>Group Id</th>
+      <th>Requested at</th>
       <th></th>
       <th></th>
     </tr>
@@ -76,8 +80,12 @@
 	      <tr>
 		<td><%= membership.user.name %></td>
 		<td><%= membership.user.email %></td>
-		
-	
+		<td><%= membership.group.groupname %></td>
+		<td><%= membership.group.id %></td>
+		<td><%= membership.created_at %></td>
+		<td><%= link_to 'Accept', :action => 'accept_membership', :id => current_user.id, :memid => membership.id %></td>
+		<td><%= link_to 'Reject', membership, method: :delete, data: { confirm: 'Are you sure you want to reject this membership request?' } %></td>
+		</tr>
     <% end %>
   </tbody>
 </table>
@@ -94,6 +102,7 @@
     <tr>
       <th>Group ID</th>
       <th>Group Name</th>
+      <th>Group Description</th>
       <th>Is Owner?</th>
       <th>Created at</th>
       <th>Updated at</th>
@@ -108,11 +117,12 @@
 	      <tr>
 		<td><%= membership.group_id %></td>
 		<td><%= membership.group.groupname %></td>
+		<td><%= membership.group.description %></td>
 		<td><%= membership.owner %></td>
 		<td><%= membership.created_at %></td>
 		<td><%= membership.updated_at %></td>
 		<td><%= link_to 'Show Group', membership.group %></td>
-		<td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure you want to destroy your membership to this group?' } %></td>
+		<td><%= link_to 'Destroy Membership', membership, method: :delete, data: { confirm: 'Are you sure you want to destroy your membership to this group?' } %></td>
 	      </tr>
 
     <% end %>
@@ -132,9 +142,8 @@
     <tr>
       <th>Group ID</th>
       <th>Group Name</th>
-      <th>Is Owner?</th>
-      <th>Created at</th>
-      <th>Updated at</th>
+      <th>Group Description</th>
+      <th>Requested at</th>
       <th></th>
       <th></th>
     </tr>
@@ -146,11 +155,9 @@
 	      <tr>
 		<td><%= membership.group_id %></td>
 		<td><%= membership.group.groupname %></td>
-		<td><%= membership.owner %></td>
+		<td><%= membership.group.description %></td>
 		<td><%= membership.created_at %></td>
-		<td><%= membership.updated_at %></td>
-		<td><%= link_to 'Show Group', membership.group %></td>
-		<td><%= link_to 'Destroy', membership, method: :delete, data: { confirm: 'Are you sure you want to destroy your membership to this group?' } %></td>
+		<td><%= link_to 'Withdraw', membership, method: :delete, data: { confirm: 'Are you sure you want to destroy your membership to this group?' } %></td>
 	      </tr>
 
     <% end %>
@@ -172,7 +179,10 @@
       <th>Description</th>
       <th>Owner email</th>
       <th>Is public</th>
-      <% if current_user.id < 5 %>
+      <th>Created At</th>
+      <th>Updated At</th>
+      <th></th>
+      <% if is_admin? %>
 	      <th></th>
 	      <th></th>
 	      <th></th>
@@ -188,15 +198,19 @@
         <td><%= group.description %></td>
         <td><%= group.owner_email %></td>
         <td><%= group.is_public %></td>
-	<% if current_user.id < 5 %>
+	<td><%= group.created_at %></td>
+	<td><%= group.updated_at %></td>
+	<% if current_user.id != group.owner_id %>
+		<td><%= link_to 'Join Group', :action => 'join_group', :id => current_user.id, :groupid => group.id %></td>
+	<% else %>
+		<td></td>   
+	<% end %>
+	<% if is_admin? %>
 		<td><%= link_to 'Show', group %></td>
 		<td><%= link_to 'Edit', edit_group_path(group) %></td>
 		<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	<% end %>
-	<% if current_user.id != group.owner_id && current_user.id != 1 %>
-		<td><%= link_to 'Join Group', :action => 'join_group', :id => current_user.id, :groupid => group.id %></td>
-		    
-	<% end %>
+	
       </tr>
     <% end %>
   </tbody>

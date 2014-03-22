@@ -8,7 +8,13 @@ class UsersController < ApplicationController
      @user_memberships = Membership.where(:user_id => @user.id, :is_confirmed => true)
      @admin_pending_memberships = Membership.where(:is_confirmed => false)
      @user_pending_memberships = Membership.where(:user_id => @user.id, :is_confirmed => false)
-     @groupadmin_pending_memberships = Membership.where(:group_id => @user.id, :is_confirmed => false)
+     if is_group_admin? and not is_admin?
+	@admingroups = Group.where(:owner_id => @user.id)
+	#@blahs = Group.group(:type).map {|e| e[:type]}
+        
+      	@groupadmin_pending_memberships = Membership.where(:group_id => @admingroups, :is_confirmed => false)
+	#groupadmin_pending_memberships = Membership
+     end
   end
 
   def new
@@ -32,6 +38,21 @@ class UsersController < ApplicationController
 			format.json { render json: @membership.errors, status: :unprocessable_entity }
 	      	end
     	end	
+  end
+
+  def accept_membership
+	@user = User.find(params[:id])	
+	@membership = Membership.find(params[:memid])
+	@membership.update(:is_confirmed => true)
+	respond_to do |format|
+	      	if @membership.save
+			format.html { redirect_to @user, notice: 'User request was successfully accepted.' }
+			format.json { render action: 'show', status: :created, location: @membership }
+	      	else
+			format.html { redirect_to @user, notice: 'Sorry there was an error.' }
+			format.json { render json: @membership.errors, status: :unprocessable_entity }
+	      	end
+    	end
   end
 
 
@@ -72,10 +93,10 @@ private
     def membership_params
 	params.require(:user).permit(:user_id, :group_id, :owner)
     end
-    #def signed_in_user
+    def signed_in_user
         #store_location
         #redirect_to signin_url, notice: "PLease sign in." unless signed_in?
-    #end
+    end
     def correct_user
       @user = User.find(params[:id])
       redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!") unless current_user?(@user)

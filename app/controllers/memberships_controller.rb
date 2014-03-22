@@ -1,17 +1,22 @@
 class MembershipsController < ApplicationController
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
-
+  before_action :check_access, only: [:index, :show, :edit, :update, :create, :new]
+  
   # GET /memberships
   # GET /memberships.json
   def index
-    @memberships = Membership.all
+    if is_admin?
+    	@memberships = Membership.all
+    else
+	@admingroups = Group.where(:owner_id => current_user.id)
+	@memberships = Membership.where(:group_id => @admingroups)
+    end
   end
 
   # GET /memberships/1
   # GET /memberships/1.json
   def show
-    @user = User.find(params[:id])
-    @memberships = @user.memberships.paginate(page: params[:page])
+    @memberships = Membership.find(params[:id])
   end
 
   # GET /memberships/new
@@ -58,7 +63,7 @@ class MembershipsController < ApplicationController
   def destroy
     @membership.destroy
     respond_to do |format|
-      format.html { redirect_to memberships_url }
+      format.html { redirect_to current_user }
       format.json { head :no_content }
     end
   end
@@ -73,4 +78,16 @@ class MembershipsController < ApplicationController
     def membership_params
       params.require(:membership).permit(:user_id, :group_id, :owner, :is_confirmed)
     end
+
+    def check_access
+	if not (is_admin? or is_group_admin?)
+		if signed_in?
+			redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!")
+		else
+			redirect_to(root, :notice => "You tried to access a wrong link, please try again!")
+		end
+	end
+    end	
+
+   	
 end
