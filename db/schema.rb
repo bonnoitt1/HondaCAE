@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140321172650) do
+ActiveRecord::Schema.define(version: 20140323002903) do
 
   create_table "groups", force: true do |t|
     t.string   "groupname"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20140321172650) do
     t.boolean  "is_public"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "owner_name"
   end
 
   create_table "materials", force: true do |t|
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(version: 20140321172650) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "is_confirmed"
+    t.string   "comments"
   end
 
   create_table "testfiles", force: true do |t|

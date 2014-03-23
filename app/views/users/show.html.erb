@@ -34,6 +34,7 @@
       <th>User Email</th>
       <th>Group Name</th>
       <th>Group Id</th>
+      <th>Comments</th>
       <th>Requested at</th>
       <th></th>
       <th></th>
@@ -48,6 +49,7 @@
 		<td><%= membership.user.email %></td>
 		<td><%= membership.group.groupname %></td>
 		<td><%= membership.group.id %></td>
+		<td><%= membership.comments %></td>
 		<td><%= membership.created_at %></td>
 		<td><%= link_to 'Accept', :action => 'accept_membership', :id => current_user.id, :memid => membership.id %></td>
 		<td><%= link_to 'Reject', membership, method: :delete, data: { confirm: 'Are you sure you want to reject this membership request?' } %></td>
@@ -68,6 +70,7 @@
       <th>User Email</th>
       <th>Group Name</th>
       <th>Group Id</th>
+      <th>Comments</th>
       <th>Requested at</th>
       <th></th>
       <th></th>
@@ -82,6 +85,7 @@
 		<td><%= membership.user.email %></td>
 		<td><%= membership.group.groupname %></td>
 		<td><%= membership.group.id %></td>
+		<td><%= membership.comments %></td>
 		<td><%= membership.created_at %></td>
 		<td><%= link_to 'Accept', :action => 'accept_membership', :id => current_user.id, :memid => membership.id %></td>
 		<td><%= link_to 'Reject', membership, method: :delete, data: { confirm: 'Are you sure you want to reject this membership request?' } %></td>
@@ -103,7 +107,7 @@
       <th>Group ID</th>
       <th>Group Name</th>
       <th>Group Description</th>
-      <th>Is Owner?</th>
+      <th>Owner</th>
       <th>Created at</th>
       <th>Updated at</th>
       <th></th>
@@ -118,7 +122,7 @@
 		<td><%= membership.group_id %></td>
 		<td><%= membership.group.groupname %></td>
 		<td><%= membership.group.description %></td>
-		<td><%= membership.owner %></td>
+		<td><%= membership.group.owner_name %></td>
 		<td><%= membership.created_at %></td>
 		<td><%= membership.updated_at %></td>
 		<td><%= link_to 'Show Group', membership.group %></td>
@@ -143,6 +147,9 @@
       <th>Group ID</th>
       <th>Group Name</th>
       <th>Group Description</th>
+      <th>Owner Name</th>
+      <th>Owner Email</th>
+      <th>Comments</th>
       <th>Requested at</th>
       <th></th>
       <th></th>
@@ -156,6 +163,9 @@
 		<td><%= membership.group_id %></td>
 		<td><%= membership.group.groupname %></td>
 		<td><%= membership.group.description %></td>
+		<td><%= membership.group.owner_name %></td>
+		<td><%= membership.group.owner_email %></td>
+		<td><%= membership.comments %></td>
 		<td><%= membership.created_at %></td>
 		<td><%= link_to 'Withdraw', membership, method: :delete, data: { confirm: 'Are you sure you want to destroy your membership to this group?' } %></td>
 	      </tr>
@@ -177,6 +187,7 @@
     <tr>
       <th>Groupname</th>
       <th>Description</th>
+      <th>Owner Name</th>
       <th>Owner email</th>
       <th>Is public</th>
       <th>Created At</th>
@@ -196,6 +207,7 @@
       <tr>
         <td><%= group.groupname %></td>
         <td><%= group.description %></td>
+	<td><%= group.owner_name %></td>
         <td><%= group.owner_email %></td>
         <td><%= group.is_public %></td>
 	<td><%= group.created_at %></td>
@@ -205,7 +217,7 @@
 	<% else %>
 		<td></td>   
 	<% end %>
-	<% if is_admin? %>
+	<% if is_group_admin? %>
 		<td><%= link_to 'Show', group %></td>
 		<td><%= link_to 'Edit', edit_group_path(group) %></td>
 		<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>

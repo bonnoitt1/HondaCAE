@@ -1,10 +1,16 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
+  before_action :check_access, only: [:index, :show, :edit, :update, :create, :new]
 
   # GET /groups
   # GET /groups.json
   def index
-    @groups = Group.all
+    
+    if is_admin?
+    	@groups = Group.all
+    else
+	@groups = Group.where(:owner_id => current_user.id)
+    end
   end
 
   # GET /groups/1
@@ -58,7 +64,7 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     respond_to do |format|
-      format.html { redirect_to groups_url }
+      format.html { redirect_to current_user }
       format.json { head :no_content }
     end
   end
@@ -71,6 +77,16 @@ class GroupsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def group_params
-      params.require(:group).permit(:groupname, :description, :owner_email, :owner_id, :is_public)
+      params.require(:group).permit(:groupname, :description, :owner_email, :owner_id, :is_public, :owner_name)
+    end
+    
+    def check_access
+	if not (is_admin? or is_group_admin?)
+		if signed_in?
+			redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!")
+		else
+			redirect_to(root, :notice => "You tried to access a wrong link, please try again!")
+		end
+	end
     end
 end

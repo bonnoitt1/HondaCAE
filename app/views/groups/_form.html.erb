@@ -20,12 +20,17 @@
     <%= f.text_field :description %>
   </div>
   <div class="field">
+    <%= f.label :owner_name %><br>
+    <%= f.text_field :owner_name, :value => current_user.name %>
+  </div>
+  <div class="field">
     <%= f.label :owner_email %><br>
-    <%= f.text_field :owner_email %>
+    <%= f.text_field :owner_email, :value => current_user.email %>
   </div>
   <div class="field">
     <%= f.label :owner_id %><br>
-    <%= f.number_field :owner_id %>
+    <%= f.text_field :owner_id , :value => current_user.id %>
+    
   </div>
   <div class="field">
     <%= f.label :is_public %><br>

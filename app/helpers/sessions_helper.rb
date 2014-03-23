@@ -28,8 +28,9 @@ def is_admin?
 end
 
 def is_group_admin?
-	@admin_of = Group.where(:owner_id => current_user.id)
-	@admin_of.count > 0
+	#@admin_of = Group.where(:owner_id => current_user.id)
+	#@admin_of.count > 0
+	(current_user.id == 1) or (current_user.id == 2) or (current_user.id == 13)
 end
 
 def user_groups
