@@ -193,9 +193,13 @@ the top-level toolbar menu item: Tools > Add-ons.
 </li>  
 </ol>
 
+You can further installing instruction to customize you Ubuntu installation by going to this link - 
+Step - 4 and Step - 5 are found here - 
+http://www.cse.ohio-state.edu/~shareef/3901.sp14/resources/vm-install.shtml
+
 ==============
 
-Cloning and running the project once you have the Ubuntu Installation Complete.
+<h1>Cloning and running the project once you have the Ubuntu Installation Complete.</h1>
 
 <pre>
 $ git clone https://github.com/shantanukhemani/Capstone.git
