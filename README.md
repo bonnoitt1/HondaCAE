@@ -193,3 +193,21 @@ the top-level toolbar menu item: Tools > Add-ons.
 </li>  
 </ol>
 
+==============
+
+Cloning and running the project once you have the Ubuntu Installation Complete.
+
+<pre>
+$ git clone https://github.com/shantanukhemani/Capstone.git
+$ cd Capstone
+$ gem install
+$ bundle install
+$ rails server
+$ Open Browser, navigate to - http://localhost:3000
+</pre>
+
+
+
+
+
+
