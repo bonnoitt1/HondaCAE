@@ -1,12 +1,12 @@
 class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :edit, :update, :destroy]
-  before_action :check_access, only: [:index, :show, :edit, :update, :create, :new]
+  before_action :check_access, only: [:index, :edit, :update, :create, :new]
+  before_action :for_show, only: [:show]
 
   # GET /groups
   # GET /groups.json
   def index
-    
-    if is_admin?
+        if is_admin?
     	@groups = Group.all
     else
 	@groups = Group.where(:owner_id => current_user.id)
@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
+	
   end
 
   # GET /groups/new
@@ -87,6 +88,13 @@ class GroupsController < ApplicationController
 		else
 			redirect_to(root, :notice => "You tried to access a wrong link, please try again!")
 		end
+	end
+    end
+
+    def for_show
+	@user_memberships = Membership.where(:group_id => @group.id, :user_id => current_user.id, :is_confirmed => true)
+	if (@user_memberships.count == 0) and not (is_admin? or is_group_admin?)
+		redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!")
 	end
     end
 end

@@ -16,20 +16,32 @@
     <%= f.text_field :mat_name %>
   </div>
   <div class="field">
-    <%= f.label :group %><br>
-    <%= f.text_field :group %>
-  </div>
-  <div class="field">
     <%= f.label :mat_type %><br>
     <%= f.text_field :mat_type %>
+  </div>
+  <div class="field">
+    <%= f.label :groupname %><br>
+    <%= f.text_field :groupname %>
+  </div>
+  <div class="field">
+    <%= f.label :groupid %><br>
+    <%= f.text_field :group_id %>
+  </div>
+  <div class="field">
+    <%= f.label :group_owner_id %><br>
+    <%= f.text_field :group_owner_id %>
   </div>
   <div class="field">
     <%= f.label :filename %><br>
     <%= f.file_field :filename %>
   </div>
   <div class="field">
-    <%= f.label :uploaded_by %><br>
-    <%= f.text_field :uploaded_by %>
+    <%= f.label :comments %><br>
+    <%= f.text_field :comments %>
+  </div>
+  <div class="field">
+    <%= f.label :confidence_level %><br>
+    <%= f.text_field :confidence_level %>
   </div>
   <div class="actions">
     <%= f.submit %>
