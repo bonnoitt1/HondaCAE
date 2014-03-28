@@ -78,6 +78,6 @@ class TestfilesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def testfile_params
-      params.require(:testfile).permit(:filename, :uploaded_by,:material_id, :mat_name, :mat_type, :group_id, :groupname, :group_owner_id, :comments, :confidence_level)
+      params.require(:testfile).permit(:filename, :uploaded_by, :material_id, :mat_name, :mat_type, :group_id, :groupname, :group_owner_id, :comments, :confidence_level)
     end
 end

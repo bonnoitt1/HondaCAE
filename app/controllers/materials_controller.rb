@@ -5,7 +5,11 @@ class MaterialsController < ApplicationController
   # GET /materials.json
   def index
     @materials = Material.all
-    @testfiles = Testfile.all
+    respond_to do |format|
+	format.html
+	format.csv { render text: @materials.to_csv }
+	format.xls # { send_data @materials.to_csv(col_sep: "\t") }
+    end
   end
 
 
