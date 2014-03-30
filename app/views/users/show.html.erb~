@@ -124,7 +124,7 @@
 		<td><%= membership.group.description %></td>
 		<td><%= membership.group.owner_name %></td>
 		<td><%= membership.created_at %></td>
-		<td><%= membership.user.group %></td>
+		<td><%= membership.updated_at %></td>
 		<td><%= link_to 'Show Group', membership.group %></td>
 		<td><%= link_to 'Destroy Membership', membership, method: :delete, data: { confirm: 'Are you sure you want to destroy your membership to this group?' } %></td>
 	      </tr>
@@ -227,6 +227,9 @@
     <% end %>
   </tbody>
 </table>
+<% if is_group_admin? %>
+<th bgcolor="#2b2b2c"><font color="#ffffff"><%= link_to 'Add New Group', new_group_path %></font></th>
+<% end %>
 </div>
 
 

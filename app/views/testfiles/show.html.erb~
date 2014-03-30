@@ -2,12 +2,17 @@
 
 <p>
   <strong>Material:</strong>
-  <%= @testfile.material %>
+  <%= @testfile.mat_name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @testfile.mat_type %>
 </p>
 
 <p>
   <strong>Group:</strong>
-  <%= @testfile.group %>
+  <%= @testfile.groupname %>
 </p>
 
 <p>

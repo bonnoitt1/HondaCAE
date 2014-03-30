@@ -11,11 +11,12 @@ class MaterialsController < ApplicationController
 	format.xls # { send_data @materials.to_csv(col_sep: "\t") }
     end
   end
-
+  
 
   # GET /materials/1
   # GET /materials/1.json
   def show
+	@testfiles = Testfile.where(:material_id => @material.id)
   end
 
   # GET /materials/new
@@ -71,7 +72,15 @@ class MaterialsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
+  
+  def download
+   @file = Testfile.find(params[:id])
+   send_file(@file.filename.path,
+              :disposition => 'attachment',
+              :url_based_filename => false)
+        
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_material

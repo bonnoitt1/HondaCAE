@@ -4,6 +4,7 @@ CapstoneHonda::Application.routes.draw do
   resources :groups
 
   match '/testfiles/download', :controller => 'testfiles', :action => 'download', via: 'get'
+  match '/materials/download', :controller => 'materials', :action => 'download', via: 'get'
   match '/signup', to: 'users#new',           via: 'get'
   match '/signin', to: 'sessions#new',        via: 'get'
   match '/signout',to: 'sessions#destroy',    via: 'delete'

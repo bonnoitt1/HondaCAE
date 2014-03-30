@@ -12,6 +12,7 @@ CapstoneHonda::Application.routes.draw do
   match '/contact',  to: 'static_pages#contact',  via: 'get'
   match '/users',  to: 'users#index',  via: 'get'
   match '/users/join_group', :controller => 'users', :action => 'join_group', via: 'get'
+  match '/users/accept_membership', :controller => 'users', :action => 'accept_membership', via: 'get'
   resources :testfiles
 
   resources :materials

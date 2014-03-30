@@ -4,6 +4,7 @@
 <tbody> 
 <thead>
     <tr>
+      <th>ID</th>
       <th>Name</th>
       <th>Type</th>
       <th>Density</th>
@@ -31,6 +32,7 @@
    
     <% @materials.each do |material| %>
       <tr>
+	<td><%= material.id %></td>
         <td><%= material.mat_name %></td>
         <td><%= material.mat_type %></td>
         <td><%= material.density %></td>
@@ -67,9 +69,9 @@
 
 <br>
 <p>
-  Download:
-  <%= link_to "CSV", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
-  <%= link_to "Excel", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
+  Export this table to:
+  <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
+  <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
 </p>
 <br>
 <% if is_group_admin? %> 

@@ -8,7 +8,7 @@ class MaterialsController < ApplicationController
     respond_to do |format|
 	format.html
 	format.csv { render text: @materials.to_csv }
-	format.xls { send_data @materials.to_csv(col_sep: "\t") }
+	format.xls # { send_data @materials.to_csv(col_sep: "\t") }
     end
   end
 
@@ -16,6 +16,7 @@ class MaterialsController < ApplicationController
   # GET /materials/1
   # GET /materials/1.json
   def show
+	@testfiles = Testfile.where(:material_id => @material.id)
   end
 
   # GET /materials/new

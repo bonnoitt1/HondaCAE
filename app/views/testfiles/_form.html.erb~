@@ -16,6 +16,10 @@
     <%= f.text_field :mat_name %>
   </div>
   <div class="field">
+    <%= f.label :material_id %><br>
+    <%= f.text_field :material_id %>
+  </div>
+  <div class="field">
     <%= f.label :mat_type %><br>
     <%= f.text_field :mat_type %>
   </div>
@@ -42,6 +46,10 @@
   <div class="field">
     <%= f.label :confidence_level %><br>
     <%= f.text_field :confidence_level %>
+  </div>
+  <div class="field">
+    <%= f.label :uploaded_by %><br>
+    <%= f.text_field :uploaded_by, value: current_user.name %>
   </div>
   <div class="actions">
     <%= f.submit %>

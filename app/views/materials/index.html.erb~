@@ -52,7 +52,12 @@
         <td><%= link_to 'Edit', edit_material_path(material) %></td>
         <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	<% end %>
-	
+	<% @files_groups = Testfile.where(:material_id => material.id) %>
+	<% @groups = @files_groups.select(:groupname).uniq %>
+	<% @groups.each do |grp| %>
+	<td>Group with Testfile</td>
+	<th><%= grp.groupname %></th>
+	<% end %>
 	
       </tr>
     <% end %>
@@ -62,9 +67,9 @@
 
 <br>
 <p>
-  Download:
-  <%= link_to "CSV", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
-  <%= link_to "Excel", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
+  Export this table to:
+  <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
+  <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
 </p>
 <br>
 <% if is_group_admin? %> 
