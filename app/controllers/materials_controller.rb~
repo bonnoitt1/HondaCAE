@@ -5,14 +5,22 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.json
   def index
-    @materials = Material.all
+    @filterrific = Filterrific.new(Material, params[:filterrific] || session[:filterrific_students])
+    @materials = Material.filterrific_find(@filterrific).page(params[:page])
+    session[:filterrific_materials] = @filterrific.to_hash
+
     respond_to do |format|
 	format.html
+	format.js
 	format.csv { render text: @materials.to_csv }
 	format.xls # { send_data @materials.to_csv(col_sep: "\t") }
     end
   end
   
+  def reset_filterrific
+    session[:filterrific_materials] = nil
+    redirect_to :action => :index
+  end
 
   # GET /materials/1
   # GET /materials/1.json

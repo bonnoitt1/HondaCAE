@@ -18,7 +18,9 @@ CapstoneHonda::Application.routes.draw do
   match '/users/accept_membership', :controller => 'users', :action => 'accept_membership', via: 'get'
   resources :testfiles
 
-  resources :materials
+  resources :materials do
+    get :reset_filterrific, :on => :collection
+  end
 
   resources :users
 

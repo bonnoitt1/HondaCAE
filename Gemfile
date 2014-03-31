@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'carrierwave'
 gem 'rmagick', '2.13.2'
 gem 'protected_attributes'
+gem 'filterrific'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'

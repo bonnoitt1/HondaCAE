@@ -1,9 +1,12 @@
 CapstoneHonda::Application.routes.draw do
+  resources :mat_memberships
+
   resources :memberships
 
   resources :groups
 
   match '/testfiles/download', :controller => 'testfiles', :action => 'download', via: 'get'
+  match '/materials/download', :controller => 'materials', :action => 'download', via: 'get'
   match '/signup', to: 'users#new',           via: 'get'
   match '/signin', to: 'sessions#new',        via: 'get'
   match '/signout',to: 'sessions#destroy',    via: 'delete'
@@ -15,8 +18,9 @@ CapstoneHonda::Application.routes.draw do
   match '/users/accept_membership', :controller => 'users', :action => 'accept_membership', via: 'get'
   resources :testfiles
 
-  resources :materials
-
+  resources :materials do
+    get :reset_filterrific, :on => :collection
+  end
   resources :users
 
   resources :sessions, only: [:new, :create, :destroy]

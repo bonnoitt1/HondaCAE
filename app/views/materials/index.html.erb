@@ -1,83 +1,38 @@
-<h1>Listing materials</h1>
-<div class="span35">
-<table class="table table-striped table-hover ">
-<tbody> 
-<thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Type</th>
-      <th>Density</th>
-      <th>Elastic modulus</th>
-      <th>Shear modulus</th>
-      <th>Poissons ratio</th>
-      <th>Yield strength</th>
-      <th>Ultimate tensile strength</th>
-      <th>Ultimate total elongation</th>
-      <th>Hardness value</th>
-      <th>Melting point</th>
-      <th>Thermal expansion</th>
-      <th>Thermal conductivity</th>
-      <th>Specific heat</th>
-      <th>Electrical resistivity</th>
-      <th>Chemical composition</th>
-      <th>Show Material</th>
-      <% if is_admin? %>
-      <th></th>
-      <th></th>
-      <% end %>
-    </tr>
-  </thead>
-
-   
-    <% @materials.each do |material| %>
-      <tr>
-	<td><%= material.id %></td>
-        <td><%= material.mat_name %></td>
-        <td><%= material.mat_type %></td>
-        <td><%= material.density %></td>
-	<td><%= material.elastic_modulus %></td>
-        <td><%= material.shear_modulus %></td>
-        <td><%= material.poissons_ratio %></td>
-        <td><%= material.yield_strength %></td>
-        <td><%= material.ultimate_tensile_strength %></td>
-        <td><%= material.ultimate_total_elongation %></td>
-        <td><%= material.hardness_value %></td>
-        <td><%= material.melting_point %></td>
-        <td><%= material.thermal_expansion %></td>
-        <td><%= material.thermal_conductivity %></td>
-        <td><%= material.specific_heat %></td>
-        <td><%= material.electrical_resistivity %></td>
-        <td><%= material.chemical_composition %></td>
-	<td><%= link_to 'Show', material, class: "btn btn-large btn-primary"  %></td>
-	<% if is_admin? %>        
-        <td><%= link_to 'Edit', edit_material_path(material) %></td>
-        <td><%= link_to 'Destroy', material, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-	<% end %>
-	<% @files_groups = Testfile.where(:material_id => material.id) %>
-	<% @groups = @files_groups.select(:groupname).uniq %>
-	<% @groups.each do |grp| %>
-	<td>Group with Testfile</td>
-	<th><%= grp.groupname %></th>
-	<% end %>
+<div class="well">
+  <%= form_for(@filterrific) do |f| %>
+    <div class="row">
+      
+       
+	<div class="field">
+	  <%= f.label :Search %><br>
+	  <%= f.text_field :search_query, :class => 'filterrific-periodically-observed' %>
+	</div>
+        
+        <div class="field">
+	  <%= f.label :Created_At %><br>
+	  <%= f.text_field :with_created_at_gte, :class => 'js-datepicker span2' %>
+	</div>
+        
+	<div class="field">
+	  <%= f.label :Sorted_By %><br>
+	  <%= f.select :sorted_by, Material.options_for_sorted_by %>
+	</div>
 	
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+	<div>
+    	  <%= link_to('Reset filters', reset_filterrific_materials_path, ) %>
+  	</div>
+  	<%# add an automated spinner to your form when the list is refreshed %>
+  	<%= render_filterrific_spinner %>
+    </div>
+  <% end %> 
 </div>
-<br>
-<h4 align="right">
-  Export this table to:
-  <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
-  <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
-</h4>
-<% if is_group_admin? or is_admin? %> 
-<p align="left"><h4><%= link_to 'Add New Material', new_material_path %></h4>
-<h4><%= link_to 'Add Material to Group', new_mat_membership_path %></h4>
-<% end %>
-<br>
-</p>
-<br>
+<h1>Listing materials</h1>
+<div id="results">
+<%= render :partial => 'materials/list', :locals => { :materials => @materials } %>
+</div>
 
+<script>
+  
+  $('.js-datepicker').datepicker();
 
+</script>
