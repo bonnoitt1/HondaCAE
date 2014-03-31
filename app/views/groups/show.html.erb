@@ -67,22 +67,22 @@
    
     <% @materials.each do |material| %>
       <tr>
-        <td><%= material.mat_name %></td>
-        <td><%= material.mat_type %></td>
-        <td><%= material.density %></td>
-	<td><%= material.elastic_modulus %></td>
-        <td><%= material.shear_modulus %></td>
-        <td><%= material.poissons_ratio %></td>
-        <td><%= material.yield_strength %></td>
-        <td><%= material.ultimate_tensile_strength %></td>
-        <td><%= material.ultimate_total_elongation %></td>
-        <td><%= material.hardness_value %></td>
-        <td><%= material.melting_point %></td>
-        <td><%= material.thermal_expansion %></td>
-        <td><%= material.thermal_conductivity %></td>
-        <td><%= material.specific_heat %></td>
-        <td><%= material.electrical_resistivity %></td>
-        <td><%= material.chemical_composition %></td>
+        <td><%= material.material.mat_name %></td>
+        <td><%= material.material.mat_type %></td>
+        <td><%= material.material.density %></td>
+	<td><%= material.material.elastic_modulus %></td>
+        <td><%= material.material.shear_modulus %></td>
+        <td><%= material.material.poissons_ratio %></td>
+        <td><%= material.material.yield_strength %></td>
+        <td><%= material.material.ultimate_tensile_strength %></td>
+        <td><%= material.material.ultimate_total_elongation %></td>
+        <td><%= material.material.hardness_value %></td>
+        <td><%= material.material.melting_point %></td>
+        <td><%= material.material.thermal_expansion %></td>
+        <td><%= material.material.thermal_conductivity %></td>
+        <td><%= material.material.specific_heat %></td>
+        <td><%= material.material.electrical_resistivity %></td>
+        <td><%= material.material.chemical_composition %></td>
 	<td><%= link_to 'Show', material, class: "btn btn-large btn-primary"  %></td>
 	<% if is_admin? %>        
         <td><%= link_to 'Edit', edit_material_path(material) %></td>
@@ -102,13 +102,57 @@
 </div>
 
 <br>
-<p>
+<p align="right">
   Export this table to:
   <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
   <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
 </p>
 <br>
 <% if is_group_admin? %> 
-<p align="center"><%= link_to 'New Material', new_material_path %></p>
+<p><h4><%= link_to 'Add New Material to group', new_mat_membership_path %></h4></p>
 <% end %>
 
+
+<h1>Listing testfiles</h1>
+
+<table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Filename</th>
+      <th>Material Name</th>
+      <th>Material Type</th>
+      <th>Material ID</th>
+      <th>Group Name</th>
+      <th>View in Browser</th>
+      <th>Download File</th>
+      <th>Uploaded by</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @testfiles.each do |testfile| %>
+      <tr>
+	<td><%= testfile.filename %></td>        
+	<td><%= testfile.mat_name %></td>
+	<td><%= testfile.mat_type %></td>
+	<td><%= testfile.material_id %></td>
+        <td><%= testfile.groupname %></td>
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td>
+        <td><%= link_to 'Download File', :action => 'download', :controller => 'testfiles', :id => testfile.id %></td>
+        <td><%= testfile.uploaded_by %></td>
+	<td><%= testfile.created_at %></td>
+        <td><%= link_to 'Show', testfile %></td>
+        <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
+        <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<h4><%= link_to 'New Testfile', new_testfile_path %></h4>

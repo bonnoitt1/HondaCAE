@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140326182631) do
+ActiveRecord::Schema.define(version: 20140330204353) do
 
   create_table "groups", force: true do |t|
     t.string   "groupname"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 20140326182631) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "owner_name"
+  end
+
+  create_table "mat_memberships", force: true do |t|
+    t.integer  "material_id"
+    t.integer  "group_id"
+    t.boolean  "is_confirmed"
+    t.string   "requested_by"
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "materials", force: true do |t|

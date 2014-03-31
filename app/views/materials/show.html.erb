@@ -97,8 +97,6 @@
       <th>Material Type</th>
       <th>Material ID</th>
       <th>Group Name</th>
-      <th>View in Browser</th>
-      <th>Download File</th>
       <th>Uploaded by</th>
       <th>Created at</th>
       <th>Updated at</th>
@@ -116,8 +114,6 @@
 	<td><%= testfile.mat_type %></td>
 	<td><%= testfile.material_id %></td>
         <td><%= testfile.groupname %></td>
-	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td>
-        <td><%= link_to 'Download File', :action => 'download', :id => testfile.id %></td>
         <td><%= testfile.uploaded_by %></td>
 	<td><%= testfile.created_at %></td>
         <td><%= link_to 'Show', testfile %></td>

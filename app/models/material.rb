@@ -1,6 +1,7 @@
 class Material < ActiveRecord::Base
 	has_many :testfiles, :foreign_key => "material_id", dependent: :destroy
-	has_and_belongs_to_many :groups
+	has_many :mat_membership, :foreign_key => "material_id"
+	has_many :groups, through: :mat_membership
 attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition, :mat_name, :mat_type
 
 	def self.to_csv(options = {})

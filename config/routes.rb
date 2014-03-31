@@ -1,4 +1,6 @@
 CapstoneHonda::Application.routes.draw do
+  resources :mat_memberships
+
   resources :memberships
 
   resources :groups

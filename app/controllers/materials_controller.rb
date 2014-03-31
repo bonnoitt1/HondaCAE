@@ -1,5 +1,6 @@
 class MaterialsController < ApplicationController
   before_action :set_material, only: [:show, :edit, :update, :destroy]
+  before_action :check_access, only: [:edit, :update, :create, :new, :destroy]
 
   # GET /materials
   # GET /materials.json
@@ -72,15 +73,7 @@ class MaterialsController < ApplicationController
       format.json { head :no_content }
     end
   end
-  
-  def download
-   @file = Testfile.find(params[:id])
-   send_file(@file.filename.path,
-              :disposition => 'attachment',
-              :url_based_filename => false)
-        
-  end
-  
+    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_material
@@ -91,5 +84,15 @@ class MaterialsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def material_params
       params.require(:material).permit(:mat_name, :mat_type, :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition)
+    end
+
+    def check_access
+	if not (is_admin?)
+		if signed_in?
+			redirect_to(current_user, :notice => "You tried to access a wrong link, please try again!")
+		else
+			redirect_to(root, :notice => "You tried to access a wrong link, please try again!")
+		end
+	end
     end
 end

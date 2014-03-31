@@ -66,15 +66,18 @@
   </tbody>
 </table>
 </div>
-
 <br>
-<p>
+<h4 align="right">
   Export this table to:
   <%= link_to "CSV File", materials_path(format: "csv"), class: "btn btn-large btn-primary"  %> |
   <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
+</h4>
+<% if is_group_admin? or is_admin? %> 
+<p align="left"><h4><%= link_to 'Add New Material', new_material_path %></h4>
+<h4><%= link_to 'Add Material to Group', new_mat_membership_path %></h4>
+<% end %>
+<br>
 </p>
 <br>
-<% if is_group_admin? %> 
-<p align="center"><%= link_to 'New Material', new_material_path %></p>
-<% end %>
+
 

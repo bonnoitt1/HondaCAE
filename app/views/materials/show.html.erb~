@@ -86,7 +86,7 @@
 <%= link_to 'Back', materials_path %>
 
 </div>
-
+<% if @testfiles.any? %>
 <h1>Listing testfiles</h1>
 
 <table class="table table-striped table-hover ">
@@ -131,3 +131,4 @@
 <br>
 
 <%= link_to 'New Testfile', new_testfile_path %>
+<% end %>
