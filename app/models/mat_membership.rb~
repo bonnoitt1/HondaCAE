@@ -1,0 +1,8 @@
+class MatMembership < ActiveRecord::Base
+  belongs_to :material
+  validates :material, presence: true  
+  belongs_to :group
+  validates :group, presence: true
+  attr_accessible :material_id, :group_id, :requested_by, :is_confirmed, :comments
+
+end
