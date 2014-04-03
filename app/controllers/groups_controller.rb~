@@ -16,7 +16,9 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-	@testfiles = Testfile.all
+	@filterrific = Filterrific.new(Material, params[:filterrific] || session[:filterrific_materials])
+	@testfiles = Testfile.where(:group_id => @group.id)
+	@materials = MatMembership.where(:group_id => @group.id)
   end
 
   # GET /groups/new

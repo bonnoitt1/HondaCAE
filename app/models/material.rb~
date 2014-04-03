@@ -6,7 +6,7 @@ attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yi
 	
 	filterrific(
   	:default_settings => { :sorted_by => 'id_asc' },
-  	:filter_names => [:search_query,:sorted_by,:with_created_at_gte]
+  	:filter_names => [:search_query,:sorted_by, :sort, :with_created_at_gte]
 	)
 
 	def self.to_csv(options = {})
@@ -57,6 +57,32 @@ attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yi
       order("LOWER(materials.mat_name) #{ direction }")
     when /^density_/
       order("materials.density #{ direction }")
+    when /^elastic_modulus_/
+      order("materials.elastic_modulus #{ direction }")
+    when /^shear_modulus_/
+      order("materials.shear_modulus #{ direction }")
+    when /^poissons_ratio_/
+      order("materials.poissons_ratio #{ direction }")
+    when /^yield_strength_/
+      order("materials.yield_strength #{ direction }")
+    when /^ultimate_tensile_strength_/
+      order("materials.ultimate_tensile_strength #{ direction }")
+    when /^ultimate_total_elongation_/
+      order("materials.ultimate_total_elongation #{ direction }")
+    when /^hardness_value_/
+      order("materials.hardness_value #{ direction }")
+    when /^melting_point_/
+      order("materials.melting_point #{ direction }")
+    when /^thermal_expansion_/
+      order("materials.thermal_expansion #{ direction }")
+    when /^thermal_conductivity_/
+      order("materials.thermal_conductivity #{ direction }")
+    when /^specific_heat_/
+      order("materials.specific_heat #{ direction }")
+    when /^electrical_resistivity_/
+      order("materials.electrical_resistivity #{ direction }")
+    when /^chemical_composition_/
+      order("materials.chemical_composition #{ direction }")
     else
       raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
     end
@@ -72,8 +98,25 @@ attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yi
       ['Name (a-z)', 'mat_name_asc'],
       ['Registration date (newest first)', 'created_at_desc'],
       ['Registration date (oldest first)', 'created_at_asc'],
-      ['Density (Smallest to Largest)', 'density_asc']
+      ['Density (Smallest to Largest)', 'density_asc'],
+      ['Elastic Modulus (Smallest to Largest)', 'elastic_modulus_asc'],
+      ['Shear Modulus (Smallest to Largest)', 'shear_modulus_asc'],
+      ['Poissons Ratio (Smallest to Largest)', 'poissons_ratio_asc'],
+      ['Yield Strength (Smallest to Largest)', 'yield_strength_asc'],
+      ['Ultimate Tensile Strength (Smallest to Largest)', 'ultimate_tensile_strength_asc'],
+      ['Ultimate Total Elongation (Smallest to Largest)', 'ultimate_total_elongation_asc'],
+      ['Hardness Value (Smallest to Largest)', 'hardness_value_asc'],
+      ['Melting Point (Smallest to Largest)', 'melting_point_asc'],
+      ['Thermal Expansion (Smallest to Largest)', 'thermal_expansion_asc'],
+      ['Thermal Conductivity (Smallest to Largest)', 'thermal_conductivity_asc'],
+      ['Specific Heat (Smallest to Largest)', 'specific_heat_asc'],
+      ['Electrical Resistivity (Smallest to Largest)', 'electrical_resistivity_asc'],
+      ['Chemical Composition (Smallest to Largest)', 'chemical_composition_asc']
     ]
+  end
+
+  def self.all_columns
+	Material.column_names
   end
 
   def decorated_created_at

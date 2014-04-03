@@ -5,7 +5,7 @@ class MaterialsController < ApplicationController
   # GET /materials
   # GET /materials.json
   def index
-    @filterrific = Filterrific.new(Material, params[:filterrific] || session[:filterrific_students])
+    @filterrific = Filterrific.new(Material, params[:filterrific] || session[:filterrific_materials])
     @materials = Material.filterrific_find(@filterrific).page(params[:page])
     session[:filterrific_materials] = @filterrific.to_hash
 

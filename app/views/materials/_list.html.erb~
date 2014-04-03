@@ -1,4 +1,4 @@
-<h1>Listing materials</h1>
+
 <div id="filterrific_results">
 	<div>
 	    <%= page_entries_info materials %>
