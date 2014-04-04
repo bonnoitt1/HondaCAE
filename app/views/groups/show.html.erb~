@@ -35,9 +35,7 @@
 <%= link_to 'Back', groups_path %>
 </div>
 
-
 <br>
-
 <h1>Listing materials</h1>
 <div class="span35">
 <table class="table table-striped table-hover ">
@@ -118,7 +116,7 @@
 
 
 <h1>Listing testfiles</h1>
-
+<div class="span35">
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
@@ -150,6 +148,7 @@
         <td><%= link_to 'Download File', :action => 'download', :controller => 'testfiles', :id => testfile.id %></td>
         <td><%= testfile.uploaded_by %></td>
 	<td><%= testfile.created_at %></td>
+	<td><%= testfile.updated_at %></td>
         <td><%= link_to 'Show', testfile %></td>
         <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
         <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -157,6 +156,6 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 <h4><%= link_to 'New Testfile', new_testfile_path %></h4>
