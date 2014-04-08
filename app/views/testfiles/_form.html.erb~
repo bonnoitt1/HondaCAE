@@ -24,13 +24,14 @@
     <%= f.text_field :mat_type %>
   </div>
   <div class="field">
-    <%= f.label :groupname %><br>
-    <%= f.text_field :groupname %>
-  </div>
-  <div class="field">
     <%= f.label :groupid %><br>
     <%= f.text_field :group_id %>
   </div>
+  <div class="field">
+    <%= f.label :groupname %><br>
+    <%= f.text_field :groupname %>
+  </div>
+  
   <div class="field">
     <%= f.label :group_owner_id %><br>
     <%= f.text_field :group_owner_id %>
@@ -46,6 +47,18 @@
   <div class="field">
     <%= f.label :confidence_level %><br>
     <%= f.text_field :confidence_level %>
+  </div>
+  <div class="field">
+    <%= f.label :person_in_charge %><br>
+    <%= f.text_field :person_in_charge %>
+  </div>
+  <div class="field">
+    <%= f.label :test_location %><br>
+    <%= f.text_field :test_location %>
+  </div>
+  <div class="field">
+    <%= f.label :test_date %><br>
+    <%= f.date_field :test_date %>
   </div>
   <div class="field">
     <%= f.label :uploaded_by %><br>

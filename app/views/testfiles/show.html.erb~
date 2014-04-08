@@ -12,7 +12,7 @@
 
 <p>
   <strong>Group:</strong>
-  <%= @testfile.groupname %>
+  <%= @testfile.group.groupname %>
 </p>
 
 <p>

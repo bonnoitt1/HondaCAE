@@ -1,12 +1,12 @@
 class Material < ActiveRecord::Base
 	has_many :testfiles, :foreign_key => "material_id", dependent: :destroy
-	has_many :mat_membership, :foreign_key => "material_id"
+	has_many :mat_membership, :foreign_key => "mat_name"
 	has_many :groups, through: :mat_membership
 attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition, :mat_name, :mat_type
 	
 	filterrific(
   	:default_settings => { :sorted_by => 'id_asc' },
-  	:filter_names => [:search_query,:sorted_by, :sort, :with_created_at_gte]
+  	:filter_names => [:search_query,:sorted_by,:with_created_at_gte,:with_mat_type]
 	)
 
 	def self.to_csv(options = {})
@@ -91,7 +91,21 @@ attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yi
   scope :with_created_at_gte, lambda { |ref_date|
     where('materials.created_at >= ?', ref_date)
   }
+  
+  scope :sorted_by_type, lambda { |sort_option_type|
+    # extract the sort direction from the param value.
+    direction = (sort_option_type =~ /desc$/) ? 'desc' : 'asc'
+    case sort_option_type.to_s
+    when /^type_/
+      order("materials.type")
+    else
+      raise(ArgumentError, "Invalid sort option: #{ sort_option.inspect }")
+    end
+  }
 
+  scope :with_mat_type, lambda { |mat_type|
+    where(:mat_type => [*mat_type])
+  }
   
   def self.options_for_sorted_by
     [
@@ -112,6 +126,16 @@ attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yi
       ['Specific Heat (Smallest to Largest)', 'specific_heat_asc'],
       ['Electrical Resistivity (Smallest to Largest)', 'electrical_resistivity_asc'],
       ['Chemical Composition (Smallest to Largest)', 'chemical_composition_asc']
+    ]
+  end
+  
+  def self.options_for_sorted_by_type
+    [
+      [],
+      ['Aluminum'],
+      ['Metal'],
+      ['Plastic'],
+      ['Rubber']
     ]
   end
 

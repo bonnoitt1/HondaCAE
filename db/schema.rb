@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140330204353) do
+ActiveRecord::Schema.define(version: 20140408203323) do
 
   create_table "groups", force: true do |t|
     t.string   "groupname"
@@ -25,13 +25,13 @@ ActiveRecord::Schema.define(version: 20140330204353) do
   end
 
   create_table "mat_memberships", force: true do |t|
-    t.integer  "material_id"
-    t.integer  "group_id"
     t.boolean  "is_confirmed"
     t.string   "requested_by"
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "mat_name"
+    t.string   "group_name"
   end
 
   create_table "materials", force: true do |t|
@@ -80,6 +80,9 @@ ActiveRecord::Schema.define(version: 20140330204353) do
     t.string   "group_owner_id"
     t.string   "comments"
     t.integer  "confidence_level"
+    t.string   "person_in_charge"
+    t.string   "test_location"
+    t.date     "test_date"
   end
 
   add_index "testfiles", ["material_id", "mat_name", "mat_type"], name: "index_for_testfiles"

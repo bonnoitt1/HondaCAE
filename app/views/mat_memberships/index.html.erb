@@ -17,8 +17,8 @@
   <tbody>
     <% @mat_memberships.each do |mat_membership| %>
       <tr>
-        <td><%= mat_membership.material_id %></td>
-        <td><%= mat_membership.group_id %></td>
+        <td><%= mat_membership.mat_name %></td>
+        <td><%= mat_membership.group_name %></td>
         <td><%= mat_membership.is_confirmed %></td>
         <td><%= mat_membership.requested_by %></td>
         <td><%= mat_membership.comments %></td>

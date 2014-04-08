@@ -18,11 +18,6 @@
 	  <%= f.select :sorted_by, Material.options_for_sorted_by %>
 	</div>
 	
-	<div class="field">
-	  <%= f.label :Test %><br>
-	  <%= f.select :all_columns, Material.column_names %>
-	</div>
-
 	<div>
     	  <%= link_to('Reset filters', reset_filterrific_materials_path, ) %>
   	</div>
