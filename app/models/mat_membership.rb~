@@ -1,8 +1,19 @@
 class MatMembership < ActiveRecord::Base
+  validates :mat_name, :group_name, :presence => true
   belongs_to :material
-  validates :material, presence: true  
+  validates_associated :material
   belongs_to :group
-  validates :group, presence: true
-  attr_accessible :material_id, :group_id, :requested_by, :is_confirmed, :comments
-
+  validates_associated :group
+  
+  validates_uniqueness_of :mat_name, scope: [:group_name]
+  validate :mat_exists
+  def mat_exists
+    if Material.where(:mat_name => self.mat_name).first==nil
+      errors.add(:base, "Material must be defined")
+    end
+  end
+  attr_accessible :mat_name, :group_name, :requested_by, :is_confirmed, :comments
+    
 end
+
+

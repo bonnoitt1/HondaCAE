@@ -58,6 +58,7 @@
       <th>Specific heat</th>
       <th>Electrical resistivity</th>
       <th>Chemical composition</th>
+      <th>Confidence Level</th>
       <th>Show Material</th>
       <% if is_admin? %>
       <th></th>
@@ -69,22 +70,23 @@
    
     <% @materials.each do |material| %>
       <tr>
-        <td><%= material.material.mat_name %></td>
-        <td><%= material.material.mat_type %></td>
-        <td><%= material.material.density %></td>
-	<td><%= material.material.elastic_modulus %></td>
-        <td><%= material.material.shear_modulus %></td>
-        <td><%= material.material.poissons_ratio %></td>
-        <td><%= material.material.yield_strength %></td>
-        <td><%= material.material.ultimate_tensile_strength %></td>
-        <td><%= material.material.ultimate_total_elongation %></td>
-        <td><%= material.material.hardness_value %></td>
-        <td><%= material.material.melting_point %></td>
-        <td><%= material.material.thermal_expansion %></td>
-        <td><%= material.material.thermal_conductivity %></td>
-        <td><%= material.material.specific_heat %></td>
-        <td><%= material.material.electrical_resistivity %></td>
-        <td><%= material.material.chemical_composition %></td>
+        <td><%= material.mat_name %></td>
+        <td><%= material.mat_type %></td>
+        <td><%= material.density %></td>
+	<td><%= material.elastic_modulus %></td>
+        <td><%= material.shear_modulus %></td>
+        <td><%= material.poissons_ratio %></td>
+        <td><%= material.yield_strength %></td>
+        <td><%= material.ultimate_tensile_strength %></td>
+        <td><%= material.ultimate_total_elongation %></td>
+        <td><%= material.hardness_value %></td>
+        <td><%= material.melting_point %></td>
+        <td><%= material.thermal_expansion %></td>
+        <td><%= material.thermal_conductivity %></td>
+        <td><%= material.specific_heat %></td>
+        <td><%= material.electrical_resistivity %></td>
+        <td><%= material.chemical_composition %></td>
+	<td><%= material.confidence_level %></td>
 	<td><%= link_to 'Show', material, class: "btn btn-large btn-primary"  %></td>
 	<% if is_admin? %>        
         <td><%= link_to 'Edit', edit_material_path(material) %></td>
@@ -110,7 +112,7 @@
   <%= link_to "Excel File", materials_path(format: "xls"), class: "btn btn-large btn-primary"  %>
 </p>
 <br>
-<% if is_group_admin? %> 
+<% if is_admin? or is_group_admin? %> 
 <p><h4><%= link_to 'Add New Material to group', new_mat_membership_path %></h4></p>
 <% end %>
 

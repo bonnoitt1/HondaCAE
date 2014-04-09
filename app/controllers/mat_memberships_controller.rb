@@ -1,7 +1,7 @@
 class MatMembershipsController < ApplicationController
   before_action :set_mat_membership, only: [:show, :edit, :update, :destroy]
   before_action :check_access, only: [:edit, :update, :create, :new, :destroy, :index, :show]
-
+  
   # GET /mat_memberships
   # GET /mat_memberships.json
   def index
@@ -26,7 +26,7 @@ class MatMembershipsController < ApplicationController
   # POST /mat_memberships.json
   def create
     @mat_membership = MatMembership.new(mat_membership_params)
-
+    
     respond_to do |format|
       if @mat_membership.save
         format.html { redirect_to @mat_membership, notice: 'Mat membership was successfully created.' }
@@ -70,7 +70,7 @@ class MatMembershipsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def mat_membership_params
-      params.require(:mat_membership).permit(:material_id, :group_id, :is_confirmed, :requested_by, :comments)
+      params.require(:mat_membership).permit(:mat_name, :group_name, :is_confirmed, :requested_by, :comments)
     end
 
     def check_access

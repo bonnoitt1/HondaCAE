@@ -1,12 +1,11 @@
 <h1>Listing testfiles</h1>
-
+<div class="span35">
 <table class="table table-striped table-hover ">
   <thead>
     <tr>
       <th>Filename</th>
       <th>Material Name</th>
       <th>Material Type</th>
-      <th>Material ID</th>
       <th>Group Name</th>
       <th>View in Browser</th>
       <th>Download File</th>
@@ -28,7 +27,6 @@
 	<td><%= testfile.filename %></td>        
 	<td><%= testfile.mat_name %></td>
 	<td><%= testfile.mat_type %></td>
-	<td><%= testfile.material_id %></td>
         <td><%= testfile.groupname %></td>
 	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td>
         <td><%= link_to 'Download File', :action => 'download', :id => testfile.id %></td>
@@ -44,7 +42,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
 <br>
 
 <%= link_to 'New Testfile', new_testfile_path %>

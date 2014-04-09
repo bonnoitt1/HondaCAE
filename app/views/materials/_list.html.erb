@@ -10,20 +10,21 @@
 		    <tr>
 		      <th>Name</th>
 		      <th>Type</th>
-		      <th>Density</th>
-		      <th>Elastic modulus</th>
-		      <th>Shear modulus</th>
+		      <th>Density (g/cm<sup>3</sup>)</th>
+		      <th>Elastic modulus (MPa)</th>
+		      <th>Shear modulus (MPa)</th>
 		      <th>Poissons ratio</th>
-		      <th>Yield strength</th>
-		      <th>Ultimate tensile strength</th>
-		      <th>Ultimate total elongation</th>
+		      <th>Yield strength (MPa)</th>
+		      <th>Ultimate tensile strength (MPa)</th>
+		      <th>Ultimate total elongation (%)</th>
 		      <th>Hardness value</th>
-		      <th>Melting point</th>
+		      <th>Melting point (°C)</th>
 		      <th>Thermal expansion</th>
-		      <th>Thermal conductivity</th>
-		      <th>Specific heat</th>
-		      <th>Electrical resistivity</th>
+		      <th>Thermal conductivity (W/m-K)</th>
+		      <th>Specific heat (J/g-°C)</th>
+		      <th>Electrical resistivity (ohm-cm)</th>
 		      <th>Chemical composition</th>
+		      <th>Confidence Level</th>
 		      <th>Show Material</th>
 		      <% if is_admin? %>
 		      <th></th>
@@ -51,6 +52,7 @@
 			<td><%= material.specific_heat %></td>
 			<td><%= material.electrical_resistivity %></td>
 			<td><%= material.chemical_composition %></td>
+			<td><%= material.confidence_level %></td>
 			<td><%= link_to 'Show', material, class: "btn btn-large btn-primary"  %></td>
 			<% if is_admin? %>        
 			<td><%= link_to 'Edit', edit_material_path(material) %></td>

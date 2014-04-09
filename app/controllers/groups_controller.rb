@@ -16,8 +16,11 @@ class GroupsController < ApplicationController
   # GET /groups/1
   # GET /groups/1.json
   def show
-	@testfiles = Testfile.where(:group_id => @group.id)
-	@materials = MatMembership.where(:group_id => @group.id)
+	@testfiles = Testfile.where(:groupname => @group.groupname)
+	
+	@mats = MatMembership.where(:group_name => @group.groupname).pluck(:mat_name)
+	@materials = Material.where(:mat_name => @mats)
+	
   end
 
   # GET /groups/new

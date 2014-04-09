@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :mat_name %><br>
-    <%= f.number_field :mat_name %>
+    <%= f.select :mat_name, options_for_select(Material.all.map{|s|[s.mat_name]}) %>
   </div>
   <div class="field">
     <%= f.label :group_name %><br>
-    <%= f.number_field :group_name %>
+    <%= f.select :group_name, options_for_select(Group.all.map{|s|[s.groupname]}) %>
   </div>
   <div class="field">
     <%= f.label :is_confirmed %><br>
@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :requested_by %><br>
-    <%= f.text_field :requested_by %>
+    <%= f.text_field :requested_by, :value => current_user.name %>
   </div>
   <div class="field">
     <%= f.label :comments %><br>

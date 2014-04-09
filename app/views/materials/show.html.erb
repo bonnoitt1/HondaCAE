@@ -13,17 +13,17 @@
 
 <p>
   <strong>Density:</strong>
-  <%= @material.density %>
+  <%= @material.density %> g/cm<sup>3</sup>
 </p>
 
 <p>
   <strong>Elastic modulus:</strong>
-  <%= @material.elastic_modulus %>
+  <%= @material.elastic_modulus %> MPa
 </p>
 
 <p>
   <strong>Shear modulus:</strong>
-  <%= @material.shear_modulus %>
+  <%= @material.shear_modulus %> MPa
 </p>
 
 <p>
@@ -33,17 +33,17 @@
 
 <p>
   <strong>Yield strength:</strong>
-  <%= @material.yield_strength %>
+  <%= @material.yield_strength %> MPa
 </p>
 
 <p>
   <strong>Ultimate tensile strength:</strong>
-  <%= @material.ultimate_tensile_strength %>
+  <%= @material.ultimate_tensile_strength %> MPa
 </p>
 
 <p>
   <strong>Ultimate total elongation:</strong>
-  <%= @material.ultimate_total_elongation %>
+  <%= @material.ultimate_total_elongation %> %
 </p>
 
 <p>
@@ -53,7 +53,7 @@
 
 <p>
   <strong>Melting point:</strong>
-  <%= @material.melting_point %>
+  <%= @material.melting_point %> °C
 </p>
 
 <p>
@@ -63,24 +63,30 @@
 
 <p>
   <strong>Thermal conductivity:</strong>
-  <%= @material.thermal_conductivity %>
+  <%= @material.thermal_conductivity %> W/m-K
 </p>
 
 <p>
   <strong>Specific heat:</strong>
-  <%= @material.specific_heat %>
+  <%= @material.specific_heat %> J/g-°C
 </p>
 
 <p>
   <strong>Electrical resistivity:</strong>
-  <%= @material.electrical_resistivity %>
+  <%= @material.electrical_resistivity %>  ohm-cm
 </p>
 
 <p>
   <strong>Chemical composition:</strong>
   <%= @material.chemical_composition %>
 </p>
-<% if current_user.id < 5 %>
+
+<p>
+  <strong>Confidence Level:</strong>
+  <%= @material.confidence_level %>
+</p>
+
+<% if is_admin? %>
 <%= link_to 'Edit', edit_material_path(@material) %>
 <% end %>
 <%= link_to 'Back', materials_path %>
@@ -98,6 +104,9 @@
       <th>Material ID</th>
       <th>Group Name</th>
       <th>Uploaded by</th>
+      <th>Person in Charge</th>
+      <th>Test Location</th>
+      <th>Test Date</th>
       <th>Created at</th>
       <th>Updated at</th>
       <th></th>
@@ -109,16 +118,22 @@
   <tbody>
     <% @testfiles.each do |testfile| %>
       <tr>
-	<td><%= testfile.filename %></td>        
+	<td><%= link_to File.basename(testfile.filename.url), testfile.filename_url %></td>        
 	<td><%= testfile.mat_name %></td>
 	<td><%= testfile.mat_type %></td>
 	<td><%= testfile.material_id %></td>
         <td><%= testfile.groupname %></td>
         <td><%= testfile.uploaded_by %></td>
+	<td><%= testfile.person_in_charge %></td>
+	<td><%= testfile.test_location %></td>
+	<td><%= testfile.test_date %></td>
 	<td><%= testfile.created_at %></td>
+	<td><%= testfile.updated_at %></td>
         <td><%= link_to 'Show', testfile %></td>
+	<% if is_admin? or is_group_admin? %>
         <td><%= link_to 'Edit', edit_testfile_path(testfile) %></td>
         <td><%= link_to 'Destroy', testfile, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>
@@ -126,5 +141,4 @@
 
 <br>
 
-<%= link_to 'New Testfile', new_testfile_path %>
 <% end %>

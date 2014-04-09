@@ -12,23 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :Material Name %><br>
+    <%= f.label :material %><br>
     <%= f.text_field :mat_name %>
   </div>
   <div class="field">
     <%= f.label :mat_type %><br>
-    <%= f.text_field :mat_type %>
+    <%= f.select :mat_type, options_for_select(['Select One', 'Aluminium', 'Metal', 'Plastic', 'Rubber']) %>
   </div>
   <div class="field">
-    <%= f.label :density %><br>
+    <%= f.label :density %> (g/cm<sup>3</sup>)<br>
     <%= f.text_field :density %>
   </div>
   <div class="field">
-    <%= f.label :elastic_modulus %><br>
+    <%= f.label :elastic_modulus %> (MPa)<br>
     <%= f.text_field :elastic_modulus %>
   </div>
   <div class="field">
-    <%= f.label :shear_modulus %><br>
+    <%= f.label :shear_modulus %> (MPa)<br>
     <%= f.text_field :shear_modulus %>
   </div>
   <div class="field">
@@ -36,15 +36,15 @@
     <%= f.text_field :poissons_ratio %>
   </div>
   <div class="field">
-    <%= f.label :yield_strength %><br>
+    <%= f.label :yield_strength %> (MPa)<br>
     <%= f.text_field :yield_strength %>
   </div>
   <div class="field">
-    <%= f.label :ultimate_tensile_strength %><br>
+    <%= f.label :ultimate_tensile_strength %> (MPa)<br>
     <%= f.text_field :ultimate_tensile_strength %>
   </div>
   <div class="field">
-    <%= f.label :ultimate_total_elongation %><br>
+    <%= f.label :ultimate_total_elongation %> (%)<br>
     <%= f.text_field :ultimate_total_elongation %>
   </div>
   <div class="field">
@@ -52,28 +52,32 @@
     <%= f.text_field :hardness_value %>
   </div>
   <div class="field">
-    <%= f.label :melting_point %><br>
+    <%= f.label :melting_point %> (°C)<br>
     <%= f.text_field :melting_point %>
   </div>
   <div class="field">
-    <%= f.label :thermal_expansion %><br>
+    <%= f.label :thermal_expansion %> <br>
     <%= f.text_field :thermal_expansion %>
   </div>
   <div class="field">
-    <%= f.label :thermal_conductivity %><br>
+    <%= f.label :thermal_conductivity %> (W/m-K)<br>
     <%= f.text_field :thermal_conductivity %>
   </div>
   <div class="field">
-    <%= f.label :specific_heat %><br>
+    <%= f.label :specific_heat %> (J/g-°C)<br>
     <%= f.text_field :specific_heat %>
   </div>
   <div class="field">
-    <%= f.label :electrical_resistivity %><br>
+    <%= f.label :electrical_resistivity %> (ohm-cm)<br>
     <%= f.text_field :electrical_resistivity %>
   </div>
   <div class="field">
     <%= f.label :chemical_composition %><br>
     <%= f.text_field :chemical_composition %>
+  </div>
+  <div class="field">
+    <%= f.label :confidence_level %><br>
+    <%= f.text_field :confidence_level %>
   </div>
   <div class="actions">
     <%= f.submit %>

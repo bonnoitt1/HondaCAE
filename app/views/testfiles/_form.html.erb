@@ -13,23 +13,15 @@
 
   <div class="field">
     <%= f.label :mat_name %><br>
-    <%= f.text_field :mat_name %>
-  </div>
-  <div class="field">
-    <%= f.label :material_id %><br>
-    <%= f.text_field :material_id %>
+    <%= f.select :mat_name, options_for_select(Material.all.map{|s|[s.mat_name]}) %>
   </div>
   <div class="field">
     <%= f.label :mat_type %><br>
-    <%= f.text_field :mat_type %>
-  </div>
-  <div class="field">
-    <%= f.label :groupid %><br>
-    <%= f.text_field :group_id %>
+    <%= f.select :mat_type, options_for_select(['Select One', 'Aluminium', 'Metal', 'Plastic', 'Rubber']) %>
   </div>
   <div class="field">
     <%= f.label :groupname %><br>
-    <%= f.text_field :groupname %>
+    <%= f.select :groupname, options_for_select(Group.all.map{|s|[s.groupname]}) %>
   </div>
   
   <div class="field">

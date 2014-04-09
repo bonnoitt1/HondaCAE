@@ -1,8 +1,13 @@
 class Material < ActiveRecord::Base
+	validates :mat_name, :presence => true
+	validates :mat_type, :inclusion => { :in => ['Aluminium', 'Metal', 'Plastic', 'Rubber'],
+    :message => "%{value} is not a valid type" }
+	validates :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition, :presence => false,:numericality => true
+	validates_uniqueness_of :mat_name, scope: [:mat_type]
 	has_many :testfiles, :foreign_key => "material_id", dependent: :destroy
 	has_many :mat_membership, :foreign_key => "mat_name"
 	has_many :groups, through: :mat_membership
-attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition, :mat_name, :mat_type
+attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength, :ultimate_tensile_strength, :ultimate_total_elongation, :hardness_value, :melting_point, :thermal_expansion, :thermal_conductivity, :specific_heat, :electrical_resistivity, :chemical_composition, :mat_name, :mat_type, :confidence_level
 	
 	filterrific(
   	:default_settings => { :sorted_by => 'id_asc' },
@@ -131,7 +136,7 @@ attr_accessible :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yi
   
   def self.options_for_sorted_by_type
     [
-      ['', "ANY"],
+      [],
       ['Aluminum'],
       ['Metal'],
       ['Plastic'],
