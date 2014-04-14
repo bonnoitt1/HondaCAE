@@ -68,20 +68,20 @@ class Material < ActiveRecord::Base
 	   ['desc']
 	]
   end
+
   scope :col_name, lambda { |colname|
 	@@column = colname.to_s
-	order("materials.#{ colname.to_s } asc")
-    }
-  scope :direction_order, lambda { |direction|
-	
-	case direction.to_s
-	when "asc"
-		order("#{ column } asc")
-	when "desc"
-		order("#{ column } desc")
+	case colname.to_s
+	when /^desc$/
+		Material.col_name(session[:filterrific_materials].col_name.to_s)
 	else
-		
+		order("materials.#{ colname.to_s } asc")
 	end
+    }
+ 
+
+  scope :direction_order, lambda { |direction|
+	Material.col_name('desc')
   }
 
   

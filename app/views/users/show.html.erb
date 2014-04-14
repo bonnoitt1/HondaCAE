@@ -214,12 +214,22 @@
         <td><%= group.is_public %></td>
 	<td><%= group.created_at %></td>
 	<td><%= group.updated_at %></td>
-	<% if current_user.id != group.owner_id %>
+	
+	<% @flag = true %>
+	<% @mems = Membership.where(:user_id => current_user.id) %>
+	<% @members = @mems.select(:group_id).uniq %>
+	<% @members.each do |mem| %>
+			<% if mem.group_id == group.id %>
+				<% @flag = false %>
+			<% end %>
+	<% end %>
+	<% if @flag == true %>
 		<td><%= link_to 'Join Group', :action => 'join_group', :id => current_user.id, :groupid => group.id %></td>
 	<% else %>
-		<td></td>   
+		<td></td>		   
 	<% end %>
-	<% if is_group_admin? %>
+	
+	<% if group.owner_id == current_user.id or is_admin? %>
 		<td><%= link_to 'Show', group %></td>
 		<td><%= link_to 'Edit', edit_group_path(group) %></td>
 		<td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>

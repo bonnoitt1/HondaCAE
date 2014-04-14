@@ -25,6 +25,8 @@
 		      <th>Electrical resistivity (ohm-cm)</th>
 		      <th>Chemical composition</th>
 		      <th>Confidence Level</th>
+		      <th>Created at</th>
+		      <th>Updated at</th>
 		      <th>Show Material</th>
 		      <% if is_admin? %>
 		      <th></th>

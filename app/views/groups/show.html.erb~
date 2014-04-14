@@ -164,6 +164,9 @@
     <% end %>
   </tbody>
 </table>
+<% if is_admin? or is_group_admin? %>
+<%= link_to 'New Testfile', new_testfile_path %>
+<% end %>
 </div>
 <br>
 <h4><%= link_to 'New Testfile', new_testfile_path %></h4>
