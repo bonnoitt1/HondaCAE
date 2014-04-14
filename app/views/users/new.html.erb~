@@ -1,7 +1,7 @@
-<div style="width: 100%; align:center; margin: 0 auto">
-<div class="container">
-	<div class="col-lg-6"><h1>Sign up</h1>
-  		<div class="well">
+<div align="center">
+<div class="container", align="center">
+	<div class="col-lg-6", align="center"><h1>Sign up</h1>
+  		<div class="well", align="center">
 
 	 
     <%= form_for(@user, :class => "bs-example form-horizontal", :html => {:multipart => true}) do |f| %>

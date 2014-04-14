@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140409203834) do
+ActiveRecord::Schema.define(version: 20140412235849) do
 
   create_table "groups", force: true do |t|
     t.string   "groupname"
@@ -73,20 +73,15 @@ ActiveRecord::Schema.define(version: 20140409203834) do
     t.string   "uploaded_by"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "material_id"
     t.string   "mat_name"
-    t.string   "mat_type"
-    t.integer  "group_id"
     t.string   "groupname"
-    t.string   "group_owner_id"
     t.string   "comments"
     t.string   "person_in_charge"
     t.string   "test_location"
     t.date     "test_date"
     t.string   "confidence_level"
+    t.string   "file_type"
   end
-
-  add_index "testfiles", ["material_id", "mat_name", "mat_type"], name: "index_for_testfiles"
 
   create_table "users", force: true do |t|
     t.string   "name"

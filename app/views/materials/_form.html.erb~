@@ -77,6 +77,8 @@
   </div>
   <div class="field">
     <%= f.label :confidence_level %><br>
+    For example: <br>
+    (On a scale of 1-150 (10 for each property), how would you rate your confidence on the data.)
     <%= f.text_field :confidence_level %>
   </div>
   <div class="actions">
