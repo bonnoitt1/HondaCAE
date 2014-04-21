@@ -11,7 +11,7 @@
 	<% if signed_in? %>
 				<ul class="nav navbar-nav navbar-right">
 					<li><%= link_to "Home", current_user %></li>
-					<% if current_user.id < 5 %>
+					<% if is_admin? %>
 					<li id="fat-menu" class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 						Manage Database <b class="caret"></b>
@@ -20,6 +20,16 @@
 							<li><%= link_to "Add Material", new_material_path %></li>
 							<li><%= link_to "Update Material Properties", materials_path %></li>
 							<li><%= link_to "Delete Material", materials_path %></li>
+						</ul>
+					</li>
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Manage Groups <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Add Materials to Group", new_mat_membership_path %></li>
+							<li><%= link_to "Update Group Details", groups_path %></li>
+							<li><%= link_to "Delete Group", groups_path %></li>
 						</ul>
 					</li>
 					<% end %>

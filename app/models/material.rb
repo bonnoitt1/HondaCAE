@@ -1,7 +1,7 @@
 class Material < ActiveRecord::Base
 	validates :mat_name, :presence => true
 
-	validates :mat_type, :inclusion => { :in => ['Aluminium', 'Metal', 'Plastic', 'Rubber'],
+	validates :mat_type, :inclusion => { :in => ['Liquid', 'Metal', 'Misc', 'Mixture', 'Plastic', 'Rubber'],
     :message => "%{value} is not a valid type" }
 
 	validates :density, :elastic_modulus, :shear_modulus, :poissons_ratio, :yield_strength,
@@ -22,7 +22,7 @@ class Material < ActiveRecord::Base
 	
 	filterrific(
   	:default_settings => { :sorted_by => 'id_asc' },
-  	:filter_names => [:search_query,:sorted_by,:direction_order,:with_created_at_gte,:with_mat_type,:col_name]
+  	:filter_names => [:search_query,:sorted_by,:direction_order,:with_created_at_gte,:with_mat_type,:col_name,:range_query]
 	)
 
 	def self.to_csv(options = {})
@@ -34,7 +34,7 @@ class Material < ActiveRecord::Base
 		end
 	end
 
-  self.per_page = 10
+  self.per_page = 100
 
   scope :search_query, lambda { |query|
     return nil  if query.blank?
@@ -186,8 +186,10 @@ class Material < ActiveRecord::Base
   
   def self.options_for_sorted_by_type
     [
-      ['Aluminum'],
+      ['Liquid'],
       ['Metal'],
+      ['Misc'],
+      ['Mixture'],
       ['Plastic'],
       ['Rubber']
     ]

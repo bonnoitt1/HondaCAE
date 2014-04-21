@@ -138,9 +138,14 @@ padding: 10px;
     text-align:center
 }   
 .span35 {  
-    height: 100px !important;
+    height: auto !important;
     overflow: scroll;	
 }
-tbody{
-display: block;
+.span36 {  
+    height: 500px;
+    overflow: scroll;	
+}
+thead {
+    position:absolute;
+    overflow: scroll;
 }

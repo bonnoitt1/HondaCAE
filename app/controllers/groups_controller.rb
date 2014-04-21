@@ -9,7 +9,7 @@ class GroupsController < ApplicationController
     if is_admin?
     	@groups = Group.all
     else
-	@groups = Group.where(:owner_id => current_user.id)
+	@groups = Group.where(:owner_name => current_user.name)
     end
   end
 

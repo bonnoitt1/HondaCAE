@@ -23,7 +23,18 @@
 						</ul>
 					</li>
 					<% end %>
-
+					<% if is_admin? or is_group_admin? %>
+					<li id="fat-menu" class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+						Manage Groups <b class="caret"></b>
+						</a>
+						<ul class="dropdown-menu">
+							<li><%= link_to "Add Materials to Group", new_mat_membership_path %></li>
+							<li><%= link_to "Update Group Details", groups_path %></li>
+							<li><%= link_to "Delete Group", groups_path %></li>
+						</ul>
+					</li>
+					<% end %>
 					<li><%= link_to "Search/View Materials", materials_path %></li>
 									
 					<li id="fat-menu" class="dropdown">
