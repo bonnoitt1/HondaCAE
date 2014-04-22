@@ -1,10 +1,10 @@
-The Ohio State University - CSE 5915 - Information Systems Project – Capstone Class
+<h5>The Ohio State University - CSE 5915 - Information Systems Project – Capstone Class</h5>
 ==========
-Honda of America, CAE Material Database Project
+<h5>Honda of America, CAE Material Database Project</h5>
 ==========
-Joint Collaboration of CSE and MSE student enrolled in their respective Capstone Classes
+<h5>Joint Collaboration of CSE and MSE student enrolled in their respective Capstone Classes</h5>
 ==========
-Virtual Machine/Server Configuration:
+<h5>Virtual Machine/Server Configuration:</h5>
 
 
 <p>
@@ -202,9 +202,9 @@ http://www.cse.ohio-state.edu/~shareef/3901.sp14/resources/vm-install.shtml
 <h1>Cloning and running the project once you have the Ubuntu Installation Complete.</h1>
 
 <pre>
-$ git clone https://github.com/shantanukhemani/Capstone.git
+$ git clone https://github.com/shantanukhemani/Capstone.git //or your own repository
 $ cd Capstone
-$ gem install
+$ sudo apt-get install libmagickwand-dev
 $ bundle install
 $ rails server
 $ Open Browser, navigate to - http://localhost:3000

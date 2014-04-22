@@ -14,7 +14,6 @@ gem 'carrierwave'
 gem 'rmagick', '2.13.2'
 gem 'protected_attributes'
 gem 'filterrific'
-gem 'rmagick', '2.13.2'
 
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
