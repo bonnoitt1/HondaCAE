@@ -377,9 +377,9 @@ Once you have the environment set up, you are finally ready to run the project.
 Run the following commands in order:
 </p>
 <pre>
+$ sudo apt-get install libmagickwand-dev
 $ git clone https://github.com/shantanukhemani/Capstone.git //proceed to the next step if you already have the project files.
 $ cd Capstone
-$ sudo apt-get install libmagickwand-dev
 $ bundle install
 $ rails server
 Open Browser, navigate to - http://localhost:3000 //or the port number that was specified in the terminal.
