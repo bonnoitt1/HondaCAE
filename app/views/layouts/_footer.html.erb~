@@ -1,8 +1,7 @@
 <footer class="footer">
   <small>
-     <%= link_to "Get Healthy", root_path %>
+     <%= link_to "Honda Materials Database", root_path %>
    
-    by Group FOUR
   </small>
   <nav>
     <ul>

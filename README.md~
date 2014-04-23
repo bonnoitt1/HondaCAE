@@ -193,21 +193,196 @@ the top-level toolbar menu item: Tools > Add-ons.
 </li>  
 </ol>
 
-You can further installing instruction to customize you Ubuntu installation by going to this link - 
-Step - 4 and Step - 5 are found here - 
-http://www.cse.ohio-state.edu/~shareef/3901.sp14/resources/vm-install.shtml
+<h3> Step 4: Installing Ruby and Rails on the virtual machine </h3>
+
+<ol>
+<li> Install RVM (Ruby Version Manager).
+<pre>
+$ bash -s stable < <(curl -s https://raw.github.com/wayneeseguin/rvm/master/binscripts/rvm-installer)
+$ source ~/.rvm/scripts/rvm
+$ echo '[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"' >> ~/.bashrc
+</pre>
+</li>
+<li> Install Ruby.
+  <ol>
+  <li> Find out what will be needed for Ruby installation by
+looking at the output of:
+<pre>
+$ rvm requirements # look what's needed for Ruby
+</pre>
+  </li>
+  <li> Cut and paste from the output above to complete
+the following line:
+<pre>
+$ sudo apt-get install <em>...long list of things...</em>
+</pre>
+  </li>
+  <li> Install the proper version of Ruby, and configure
+it to be the system default:
+<pre>
+$ rvm list known #see available ruby versions
+$ rvm install 1.9.3  # don't use ruby-head! gives 1.8.7!
+$ rvm --default use 1.9.3  # set default ruby version
+</pre>
+  </li>
+  <li> Confirm Ruby installation:
+<pre>
+$ ruby -v  # confirm proper version (ie 1.9.3)
+$ gem -v  # confirm it exists (something like v 1.8.24)
+</pre>
+  </li>
+  </ol>
+<li> Install Rails.
+  <ol>
+  <li> Install the gem:
+<pre>
+$ gem install rails
+$ rails -v # confirm proper version (ie 3.2.3)
+</pre>
+  </li>
+  <li> Rails requires a JavaScript runtime, which 
+Ubuntu does not provide.  Installing node.js 
+solves this problem:
+<pre>
+$ sudo apt-get install nodejs
+</pre>
+  </li>
+  </ol>
+</li>
+<li> Confirm Rails installation with a system test.
+<pre>
+$ mkdir rails_work
+$ cd rails_work
+$ rails new demo
+$ cd demo
+$ rake about  # version info, checks for a javascript runtime, etc
+$ rails server
+</pre>
+The output of the last command should look something like:
+<pre>
+=> Booting WEBrick
+=> Rails 3.2.3 application starting in development on http://0.0.0.0:3000
+=> Call with -d to detach
+=> Ctrl-C to shutdown server
+[2012-05-04 14:59:35] INFO  WEBrick 1.3.1
+[2012-05-04 14:59:35] INFO  ruby 1.9.3 (2012-04-20) [i686-linux]
+[2012-05-04 14:59:35] INFO  WEBrick::HTTPServer#start: pid=2829 port=3000
+</pre>
+If it doesn't, see <a href="troubleshooting.shtml">troubleshooting</a>.
+If the server did start normally, you can kill it with Ctrl-C
+(in the terminnal window in which it is running):
+<pre>
+^C[2012-05-04 15:02:02] INFO  going to shutdown ...
+[2012-05-04 15:02:02] INFO  WEBrick::HTTPServer#start done.
+Exiting
+</pre>
+</li>
+</ol>
+
+<h3> Step 5: Installing RubyMine on the virtual machine
+  <em>(optional)</em></h3>
+
+<p>
+  Note: The installation of the RubyMine IDE is <em>optional</em>.
+  This part of the setup instructions is not part of project 1.
+  In fact, it will not be required for any part of the course.
+  Many developers just use their favorite editor (emacs, vim, sublime,
+  etc) for Ruby.  The choice, however, is yours.
+</p>
+
+<ol>
+<li> RubyMine requires Oracle's JDK/JRE.
+  <ol>
+  <li> Using the <em>virtual machine</em>'s browser (Firefox),
+download the Oracle Java SE v 7 JDK by going to
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/java-se-jdk-7-download-432154.html">
+http://www.oracle.com/technetwork/java/javase/downloads/java-se-jdk-7-download-432154.html</a>.
+You will need to accept the license, find the Linux x86
+version (i.e. 32 bit) and then choosing the tar.gz version.
+It is called something like:
+jdk-7-linux-i586.tar.gz.
+  </li>
+  <li> Extract the downloaded Oracle Java JDK archive
+into your home folder and rename the newly created folder to
+"java-7-oracle":
+<pre>
+$ tar xvfz ~/Downloads/jdk-7u5-linux/i586.tar.gz -C ~
+$ cd
+$ ls  # look for something like jdk1.7.0_07
+$ mv jdk1.7.0_07 java-7-oracle
+</pre>
+  </li>
+  <li> Install the JDK:
+<!--use ppa:webupd8team/java instead?-->
+<pre>
+$ cd
+$ sudo mkdir /usr/lib/jvm/
+$ sudo mv java-7-oracle/ /usr/lib/jvm/
+$ sudo add-apt-repository ppa:nilarimogard/webupd8
+$ sudo apt-get update
+$ sudo apt-get install update-java
+$ sudo update-java # select java-7-oracle from gui
+</pre>
+  </li>
+  <li> Confirm the installation:
+<pre>
+$ java -version # shows version info
+$ javac -version # shows version info
+</pre>
+  </li>
+  </ol>
+</li>
+<li> Install RubyMine.
+  <ol>
+  <li> Using the <em>virtual machine</em>'s browser (Firefox),
+download the RubyMine from 
+<a href="www.jetbrains.com/ruby">www.jetbrains.com/ruby</a>.
+Saving the file puts it in ~/Downloads.
+  </li>
+  <li> Unpack the downloaded file to some location
+(e.g., your home directory ~):
+<pre>
+$ tar xvfz ~/Downloads/RubyMine-4.5.tar.gz -C ~
+</pre>
+  </li>
+  <li> Run it:
+<pre>
+$ RubyMine-4.5/bin/rubymine.sh
+</pre>
+  </li>
+  <li> The first time you run RubyMine, it will
+prompt you for license data.  You can find this
+information on the class discussion forum.
+Once the license data has been entered, you can
+accept all the default configurations.
+  </li>
+  </ol>
+</li>
+</ol>
 
 ==============
-
-<h1>Cloning and running the project once you have the Ubuntu Installation Complete.</h1>
-
+<h3>Ruby on Rails on Windows:<h3>
+<p>
+Insteal of using Virtual Machine and Ubuntu you could also choose to install Ruby on Rails on Windows. Please visit the following link for instructions on how to get/install Ruby on Rails on Windows.
+</p>
 <pre>
-$ git clone https://github.com/shantanukhemani/Capstone.git
+http://rubyonrails.org/download
+</pre>
+
+==============
+<h3>Step 6: After setting up the environment</h3>
+<p>
+Once you have the environment set up, you are finally ready to run the project.
+
+Run the following commands in order:
+</p>
+<pre>
+$ git clone https://github.com/shantanukhemani/Capstone.git //proceed to the next step if you already have the project files.
 $ cd Capstone
-$ gem install
+$ sudo apt-get install libmagickwand-dev
 $ bundle install
 $ rails server
-$ Open Browser, navigate to - http://localhost:3000
+Open Browser, navigate to - http://localhost:3000 //or the port number that was specified in the terminal.
 </pre>
 
 

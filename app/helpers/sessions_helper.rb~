@@ -24,7 +24,7 @@ def current_user?(user)
 end
 
 def is_admin?
-    (current_user.id == 1) or (current_user.id == 12)
+    (current_user.id == 1) or (current_user.id == 14)
 end
 
 def is_group_admin?
