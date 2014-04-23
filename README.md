@@ -360,7 +360,7 @@ accept all the default configurations.
 </li>
 </ol>
 
-==============
+==========
 <h3>Ruby on Rails on Windows:<h3>
 <p>
 Insteal of using Virtual Machine and Ubuntu you could also choose to install Ruby on Rails on Windows. Please visit the following link for instructions on how to get/install Ruby on Rails on Windows.
@@ -369,7 +369,7 @@ Insteal of using Virtual Machine and Ubuntu you could also choose to install Rub
 http://rubyonrails.org/download
 </pre>
 
-==============
+==========
 <h3>Step 6: After setting up the environment</h3>
 <p>
 Once you have the environment set up, you are finally ready to run the project.
